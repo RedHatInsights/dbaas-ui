@@ -6,7 +6,7 @@ import App from './App';
 import { getBaseName } from '@redhat-cloud-services/frontend-components-utilities/helpers';
 import logger from 'redux-logger';
 
-const basename = getBaseName(window.location.pathname)
+const basename = getBaseName(window.location.pathname);
 const AppEntry = () => (
   <Provider
     store={init(process.env.NODE_ENV !== 'production' ? logger : {}).getStore()}

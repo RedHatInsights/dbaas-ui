@@ -1,14 +1,9 @@
-import React, { Suspense, useEffect } from 'react';
-import { withRouter, Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
+import React from 'react';
 
 import {
   Button,
-  StackItem,
-  Stack,
   Title,
   Text,
-  Spinner,
   TextContent,
   Grid,
   GridItem,
@@ -17,10 +12,7 @@ import {
   Bullseye,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
-import {
-  PageHeader,
-  PageHeaderTitle,
-} from '@redhat-cloud-services/frontend-components/PageHeader';
+import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
 import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon';
 import VideoIcon from '@patternfly/react-icons/dist/js/icons/video-slash-icon';
 
