@@ -8,7 +8,7 @@ const { config: webpackConfig, plugins } = config({
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   useProxy: true,
   useCloud: true, // Until console.redhat.com is working
-  appUrl: process.env.BETA ? '/beta/staging/starter' : '/staging/starter',
+  appUrl: process.env.BETA ? '/beta/application-services/dbaas' : '/application-services/dbaas',
   env: process.env.BETA ? 'ci-beta' : 'ci-stable',
   standalone: Boolean(process.env.STANDALONE),
 });
