@@ -18,7 +18,7 @@
     "start": "webpack serve --config config/dev.webpack.config.js",
     "start:beta": "BETA=true npm start",
     "start:standalone": "STANDALONE=true npm start",
-    "test": "jest",
+    "test": "jest --passWithNoTests",
     "verify": "npm-run-all build lint test"
   },
   "dependencies": {
