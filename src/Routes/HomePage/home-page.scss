@@ -1,0 +1,20 @@
+@import '~@patternfly/patternfly/sass-utilities/_all';
+
+.dbaas-home-page__header {
+  background-image: url('https://console.redhat.com/apps/frontend-assets/background-images/bg__hero.svg');
+  background-repeat: no-repeat;
+  background-position: right;
+}
+
+@media screen and (max-width: $pf-global--breakpoint--md) {
+  .dbaas-home-page__header {
+    background-image: none;
+  }
+}
+
+.dbaas-home-page__subtitle {
+  color: var(--pf-global--Color--200)
+}
+.dbaas-home-page__video-card {
+  min-height: 250px; // will depend on the actuall video frame
+}
