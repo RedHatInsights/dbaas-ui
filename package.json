@@ -22,7 +22,9 @@
     "verify": "npm-run-all build lint test"
   },
   "dependencies": {
+    "@patternfly/patternfly": "^4.132.2",
     "@patternfly/react-core": "4.152.4",
+    "@patternfly/react-icons": "^4.11.14",
     "@patternfly/react-table": "4.29.58",
     "@redhat-cloud-services/frontend-components": "^3.4.1",
     "@redhat-cloud-services/frontend-components-notifications": "^3.2.4",
@@ -61,6 +63,6 @@
     "webpack-bundle-analyzer": "4.4.2"
   },
   "insights": {
-    "appname": "dbaas"
+    "appname": "dashboard"
   }
 }

@@ -6,7 +6,7 @@ import NotificationsPortal from '@redhat-cloud-services/frontend-components-noti
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
-import { Routes } from './Routes';
+import Routes from './Routes';
 import './App.scss';
 
 const App = () => {
