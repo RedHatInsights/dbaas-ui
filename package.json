@@ -63,6 +63,6 @@
     "webpack-bundle-analyzer": "4.4.2"
   },
   "insights": {
-    "appname": "dashboard"
+    "appname": "dbaas"
   }
 }
