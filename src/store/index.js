@@ -5,11 +5,13 @@ import notificationsMiddleware from '@redhat-cloud-services/frontend-components-
 let registry;
 
 export function init(...middleware) {
-  registry = getRegistry({}, [
-    promiseMiddleware,
-    notificationsMiddleware({ errorDescriptionKey: ['detail', 'stack'] }),
-    ...middleware,
-  ]);
+  if (registry) {
+    registry = getRegistry({}, [
+      promiseMiddleware,
+      notificationsMiddleware({ errorDescriptionKey: ['detail', 'stack'] }),
+      ...middleware,
+    ]);
+  }
   return registry;
 }
 
