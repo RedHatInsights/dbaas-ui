@@ -22,6 +22,7 @@ const App = () => {
         history.push(event?.domEvent?.href);
       }
     });
+    document.title = 'Database Access | Red Hat OpenShift Application Services';
     return () => {
       unregister();
     };
