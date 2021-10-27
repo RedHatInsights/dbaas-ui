@@ -47,7 +47,7 @@ const HomePage = () => {
                   component="a"
                   target="_blank"
                   variant="secondary"
-                  href="https://access.redhat.com/documentation/en-us/red_hat_managed_data_services/1/html-single/red_hat_openshift_database_access_quick_start_guide/index"
+                  href="https://access.redhat.com/documentation/en-us/red_hat_openshift_database_access/1/html-single/quick_start_guide/index"
                 >
                   Get Started with accessing databases from OpenShift
                 </Button>
