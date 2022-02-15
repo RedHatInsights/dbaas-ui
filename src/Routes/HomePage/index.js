@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 import {
   Button,
@@ -9,12 +9,12 @@ import {
   GridItem,
   Stack,
   StackItem,
-} from "@patternfly/react-core";
-import { Main } from "@redhat-cloud-services/frontend-components/Main";
-import { PageHeader } from "@redhat-cloud-services/frontend-components/PageHeader";
-import ExternalLinkAltIcon from "@patternfly/react-icons/dist/js/icons/external-link-alt-icon";
+} from '@patternfly/react-core';
+import { Main } from '@redhat-cloud-services/frontend-components/Main';
+import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
+import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-link-alt-icon';
 
-import "./home-page.scss";
+import './home-page.scss';
 
 const HomePage = () => {
   return (
@@ -91,7 +91,7 @@ const HomePage = () => {
               </GridItem>
               <GridItem md={6} sm={12}>
                 <iframe
-                  style={{ width: "100%", height: "315px" }}
+                  style={{ width: '100%', height: '315px' }}
                   width="560"
                   height="315"
                   src="https://www.youtube.com/embed/QmF5da2LvnU"
@@ -132,7 +132,7 @@ const HomePage = () => {
               </GridItem>
               <GridItem md={6} sm={12}>
                 <iframe
-                  style={{ width: "100%", height: "315px" }}
+                  style={{ width: '100%', height: '315px' }}
                   width="560"
                   height="315"
                   src="https://www.youtube.com/embed/wEcqQziu17o"
