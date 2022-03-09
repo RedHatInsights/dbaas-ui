@@ -23,7 +23,7 @@ const HomePage = () => {
         <Grid>
           <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
-              Get started with OpenShift Database Access
+              Get started with Red Hat OpenShift Database Access
             </Title>
             <Stack hasGutter>
               <StackItem>
@@ -35,8 +35,8 @@ const HomePage = () => {
                     Easily discover, consume, monitor, and manage databases as a
                     service on the managed OpenShift Platform. OpenShift
                     database access helps accelerate your development for
-                    applications that use MongoDB Atlas and Crunchy Bridge
-                    managed database services.
+                    applications that use MongoDB Atlas, Crunchy Bridge and
+                    CockroachDB managed database services.
                   </Text>
                 </TextContent>
               </StackItem>
@@ -49,7 +49,7 @@ const HomePage = () => {
                   variant="secondary"
                   href="https://access.redhat.com/documentation/en-us/red_hat_openshift_database_access/1/html-single/quick_start_guide/index"
                 >
-                  Get Started with accessing databases from OpenShift
+                  Get Started with OpenShift Database Access
                 </Button>
               </StackItem>
             </Stack>
@@ -68,10 +68,10 @@ const HomePage = () => {
                   <StackItem>
                     <TextContent>
                       <Text>
-                        <b>For database admins.</b> In this video you’ll learn
-                        how as a database admin you can access your purchased
-                        MongoDB Atlas and/or Crunchy Bridge managed database
-                        service to your managed OpenShift Cluster.
+                        <b>For database admins:</b> in this video you’ll learn
+                        how to set up a cloud database service connection on
+                        your OpenShift cluster for self-service consumption by
+                        application developers.
                       </Text>
                     </TextContent>
                   </StackItem>
@@ -110,10 +110,9 @@ const HomePage = () => {
                   <StackItem>
                     <TextContent>
                       <Text>
-                        <b>For database developers.</b> In this video you’ll
-                        learn how as a developer you can quickly build and
-                        deploy an application using the database access service
-                        in a few simple steps.
+                        <b>For application developers:</b> in this video, you’ll
+                        learn how to quickly and easily connect your application
+                        to a cloud database service on your OpenShift cluster.
                       </Text>
                     </TextContent>
                   </StackItem>
