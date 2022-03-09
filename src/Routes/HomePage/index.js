@@ -82,7 +82,7 @@ const HomePage = () => {
                       target="_blank"
                       component="a"
                       variant="secondary"
-                      href="https://youtu.be/QmF5da2LvnU "
+                      href="https://youtu.be/vDrh3SnciL0"
                     >
                       View the demo
                     </Button>
@@ -94,7 +94,7 @@ const HomePage = () => {
                   style={{ width: '100%', height: '315px' }}
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/QmF5da2LvnU"
+                  src="https://www.youtube.com/embed/vDrh3SnciL0"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -124,7 +124,7 @@ const HomePage = () => {
                       target="_blank"
                       component="a"
                       variant="secondary"
-                      href="https://youtu.be/wEcqQziu17o"
+                      href="https://youtu.be/qWaAwhxwjWs"
                     >
                       View the demo
                     </Button>
@@ -136,7 +136,7 @@ const HomePage = () => {
                   style={{ width: '100%', height: '315px' }}
                   width="560"
                   height="315"
-                  src="https://www.youtube.com/embed/wEcqQziu17o"
+                  src="https://www.youtube.com/embed/qWaAwhxwjWs"
                   title="YouTube video player"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
