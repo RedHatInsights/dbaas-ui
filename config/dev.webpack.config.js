@@ -7,11 +7,10 @@ const { config: webpackConfig, plugins } = config({
   debug: true,
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   useProxy: true,
-  useCloud: true, // Until console.redhat.com is working
   appUrl: process.env.BETA
     ? '/beta/application-services/databases'
     : '/application-services/databases',
-  env: process.env.BETA ? 'ci-beta' : 'ci-stable',
+  env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   standalone: Boolean(process.env.STANDALONE),
 });
 plugins.push(...commonPlugins);
