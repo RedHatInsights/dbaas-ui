@@ -32,11 +32,14 @@ const HomePage = () => {
                     Add-on service for managed OpenShift
                   </Text>
                   <Text>
-                    Easily discover, consume, monitor, and manage databases as a
-                    service on the managed OpenShift Platform. OpenShift
-                    database access helps accelerate your development for
-                    applications that use MongoDB Atlas, Crunchy Bridge and
-                    CockroachDB managed database services.
+                    Simplifies and standardizes how teams provision, monitor,
+                    and connect to cloud-hosted partner database services across
+                    your environment on the managed OpenShift Platform.
+                    OpenShift Database Access helps accelerate your development
+                    for applications that use MongoDB Atlas, Crunchy Bridge,
+                    CockroachDB Dedicated and Amazon RDS (MySQL, PostgreSQL,
+                    MariaDB, Oracle BYOL, or SQL Server) cloud database
+                    services.
                   </Text>
                 </TextContent>
               </StackItem>
