@@ -2,6 +2,9 @@
 set -e
 set -x
 
+# master should push to stage-beta which is where most teams determine their promotion
+# before pushing that code to prod-beta, then to master-stable (stage-stable), then to prod-stable
+
 if [ "${TRAVIS_BRANCH}" = "master" ]
 then
     for env in ci qa
