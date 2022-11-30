@@ -1,4 +1,5 @@
 import React from 'react';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
@@ -17,6 +18,7 @@ import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-
 import './home-page.scss';
 
 const HomePage = () => {
+  const { analytics } = useChrome();
   return (
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-u-p-2xl">
@@ -45,6 +47,9 @@ const HomePage = () => {
               </StackItem>
               <StackItem>
                 <Button
+                  onClick={() => {
+                    analytics.track('rhoda-get-started-click');
+                  }}
                   iconPosition="right"
                   icon={<ExternalLinkAltIcon />}
                   component="a"
@@ -80,6 +85,9 @@ const HomePage = () => {
                   </StackItem>
                   <StackItem>
                     <Button
+                      onClick={() => {
+                        analytics.track('rhoda-video-1-click');
+                      }}
                       iconPosition="right"
                       icon={<ExternalLinkAltIcon />}
                       target="_blank"
@@ -121,6 +129,9 @@ const HomePage = () => {
                   </StackItem>
                   <StackItem>
                     <Button
+                      onClick={() => {
+                        analytics.track('rhoda-video-2-click');
+                      }}
                       iconPosition="right"
                       icon={<ExternalLinkAltIcon />}
                       target="_blank"
