@@ -17,9 +17,8 @@ import ExternalLinkAltIcon from '@patternfly/react-icons/dist/js/icons/external-
 
 import './home-page.scss';
 
-const { analytics } = useChrome();
-
 const HomePage = () => {
+  const { analytics } = useChrome();
   return (
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-u-p-2xl">
