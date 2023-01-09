@@ -3,6 +3,8 @@ import semver from 'semver';
 import { useDispatch } from 'react-redux';
 import { addNotification, clearNotifications } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import { useState, useCallback, useEffect } from "react";
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+
 import {
   Button,
   Title,
@@ -543,6 +545,7 @@ const HomePage = () => {
     dispatch(clearNotifications());
   }, [])
 
+  const { analytics } = useChrome();
   return (
     <React.Fragment>
       <Modal
@@ -594,6 +597,7 @@ const HomePage = () => {
                 </TextContent>
               </StackItem>
               <StackItem>
+<<<<<<< HEAD
                 <Flex>
                   <Button
                     data-testid="hero-buttonInstall"
@@ -603,6 +607,9 @@ const HomePage = () => {
                     {textContent.installButton}
                   </Button>
                   <Button
+                    onClick={() => {
+                      analytics.track('rhoda-get-started-click');
+                    }}
                     iconPosition="right"
                     icon={<ExternalLinkAltIcon />}
                     component="a"
@@ -613,7 +620,6 @@ const HomePage = () => {
                     Get Started with OpenShift Database Access
                   </Button>
                 </Flex>
-
               </StackItem>
             </Stack>
           </GridItem>
@@ -640,6 +646,9 @@ const HomePage = () => {
                   </StackItem>
                   <StackItem>
                     <Button
+                      onClick={() => {
+                        analytics.track('rhoda-video-1-click');
+                      }}
                       iconPosition="right"
                       icon={<ExternalLinkAltIcon />}
                       target="_blank"
@@ -681,6 +690,9 @@ const HomePage = () => {
                   </StackItem>
                   <StackItem>
                     <Button
+                      onClick={() => {
+                        analytics.track('rhoda-video-2-click');
+                      }}
                       iconPosition="right"
                       icon={<ExternalLinkAltIcon />}
                       target="_blank"
