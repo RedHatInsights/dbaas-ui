@@ -597,7 +597,6 @@ const HomePage = () => {
                 </TextContent>
               </StackItem>
               <StackItem>
-<<<<<<< HEAD
                 <Flex>
                   <Button
                     data-testid="hero-buttonInstall"
