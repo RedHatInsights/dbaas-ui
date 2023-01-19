@@ -340,6 +340,7 @@ const HomePage = () => {
   const [selectedCluster, setSelectedCluster] = useState();
   const [upgradeStrategy, setUpgradeStrategy] = useState("Upgrade");
   const [{ mode, clusters }, setClustersState] = useState({ clusters: [], mode: RHODAClusterAddonMode.Detecting });
+  const { analytics } = useChrome();
 
   const modalActions = (mode) => {
     const isAROClusterSelected = selectedCluster && selectedCluster.plan?.type === 'ARO';
@@ -552,6 +553,7 @@ const HomePage = () => {
 
   const handleInstallModalOpen = () => {
     // eslint-disable-next-line
+    analytics.track('rhoda-install-it-on-cluster-button-click');
     getData();
     setIsModalOpen(true);
   };
@@ -564,7 +566,6 @@ const HomePage = () => {
     dispatch(clearNotifications());
   }, [])
 
-  const { analytics } = useChrome();
   return (
     <React.Fragment>
       <Modal
