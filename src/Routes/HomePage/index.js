@@ -354,10 +354,6 @@ const HomePage = () => {
           key="install"
           onClick={() => { installAddon() }}
           data-testid="install-RHODA-button"
-          href={INSTALL_ADDON_HREF.replace(
-            "{subscriptionID}",
-            selectedCluster?.id || ""
-          )}
         >
           {textContent.installClusterAction}
         </Button>,
@@ -465,7 +461,7 @@ const HomePage = () => {
   const parsePayload = (res) => {
     setIsModalOpen(false);
     setClustersState({ mode: RHODAClusterAddonMode.Detecting, clusters: [] });
-    if (res && res.state === 'installing' || res.state === 'ready') {
+    if (res && res.state === 'ready') {
       dispatch(addNotification({
         variant: 'success',
         title: 'RHODA add-on successfully installed',
@@ -484,6 +480,29 @@ const HomePage = () => {
               isInline
             >
               Go to the OpenShift Cluster Manager console
+            </Button>
+          </>
+      }))
+    }
+
+    if (res && res.state === 'installing') {
+      dispatch(addNotification({
+        variant: 'info',
+        title: 'Add-on installation in progress',
+        description:
+          <>
+            <p>The Red Hat OpenShift Database Access add-on is being installed on the cluster you selected. To monitor the installation progress click on the link below.</p>
+            <br />
+            <Button
+              variant="link"
+              component="a"
+              href={INSTALL_ADDON_HREF.replace("{subscriptionID}",selectedCluster?.id || "")}
+              rel="noopener noreferrer"
+              icon={<ExternalLinkAltIcon />}
+              iconPosition="right"
+              isInline
+            >
+              View progress
             </Button>
           </>
       }))
