@@ -605,14 +605,24 @@ const HomePage = () => {
                     Add-on service for managed OpenShift
                   </Text>
                   <Text>
-                    Simplifies and standardizes how teams provision, monitor,
-                    and connect to cloud-hosted partner database services across
-                    your environment on the managed OpenShift Platform.
-                    OpenShift Database Access helps accelerate your development
-                    for applications that use MongoDB Atlas, Crunchy Bridge,
-                    CockroachDB Dedicated and Amazon RDS (MySQL, PostgreSQL,
-                    MariaDB, Oracle BYOL, or SQL Server) cloud database
-                    services.
+                    OpenShift Database Access helps accelerate development for applications using cloud-hosted database services like MongoDB Atlas, Crunchy Bridge, CockroachDB or Amazon’s Aurora and Relational Database Service (RDS) with support for popular database engines, including: MySQL, PostgreSQL, SQL Server, MariaDB, and Oracle.
+                  </Text>
+                  <Text>
+                    To learn more access the &nbsp;
+                    <Button
+                      onClick={() => {
+                        analytics.track('rhoda-get-started-click');
+                      }}
+                      iconPosition="right"
+                      icon={<ExternalLinkAltIcon />}
+                      isInline
+                      variant="link"
+                      component="a"
+                      target="_blank"
+                      href="https://access.redhat.com/documentation/en-us/red_hat_openshift_database_access/1/html-single/quick_start_guide/index"
+                    >
+                      quick start guide
+                    </Button>
                   </Text>
                 </TextContent>
               </StackItem>
@@ -627,16 +637,16 @@ const HomePage = () => {
                   </Button>
                   <Button
                     onClick={() => {
-                      analytics.track('rhoda-get-started-click');
+                      analytics.track('rhoda-try-it-on-sandbox-button-click');
                     }}
                     iconPosition="right"
                     icon={<ExternalLinkAltIcon />}
                     component="a"
                     target="_blank"
                     variant="secondary"
-                    href="https://access.redhat.com/documentation/en-us/red_hat_openshift_database_access/1/html-single/quick_start_guide/index"
+                    href="https://developers.redhat.com/developer-sandbox"
                   >
-                    Get Started with OpenShift Database Access
+                    Try it in the Developer Sandbox
                   </Button>
                 </Flex>
               </StackItem>
