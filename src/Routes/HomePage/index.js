@@ -1,8 +1,12 @@
+/* eslint react/prop-types: 0 */
 import React from 'react';
 import semver from 'semver';
 import { useDispatch } from 'react-redux';
-import { addNotification, clearNotifications } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { useState, useCallback, useEffect } from "react";
+import {
+  addNotification,
+  clearNotifications,
+} from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { useState, useCallback, useEffect } from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
@@ -26,13 +30,23 @@ import {
   Alert,
   Popover,
   Split,
-  SplitItem
+  SplitItem,
 } from '@patternfly/react-core';
 import { Main } from '@redhat-cloud-services/frontend-components/Main';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { HelpIcon, ExternalLinkAltIcon } from '@patternfly/react-icons'
+import { HelpIcon, ExternalLinkAltIcon } from '@patternfly/react-icons';
 
-import { RHODAClusterAddonMode, CREATE_CLUSTER_HREF, UPGRADE_CLUSTER_HREF, INSTALL_ADDON_HREF, RHODA_ADDON_ID, ARO_QUICK_START_GUIDE_HREF, textContent, ClusterTypeAndNameMapping, RHOpenShiftServiceName } from "./consts";
+import {
+  RHODAClusterAddonMode,
+  CREATE_CLUSTER_HREF,
+  UPGRADE_CLUSTER_HREF,
+  INSTALL_ADDON_HREF,
+  RHODA_ADDON_ID,
+  ARO_QUICK_START_GUIDE_HREF,
+  textContent,
+  ClusterTypeAndNameMapping,
+  RHOpenShiftServiceName,
+} from './consts';
 
 import './home-page.scss';
 
@@ -44,21 +58,24 @@ const ClusterSelect = ({
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const getClusterTypeAndName = (cluster) => {
-    const clusterType = cluster.plan?.type !== undefined ? ClusterTypeAndNameMapping[cluster.plan?.type] : `${RHOpenShiftServiceName} on ${cluster.cloud_provider_id}`;
+    const clusterType =
+      cluster.plan?.type !== undefined
+        ? ClusterTypeAndNameMapping[cluster.plan?.type]
+        : `${RHOpenShiftServiceName} on ${cluster.cloud_provider_id}`;
     return `${cluster.display_name} (${clusterType})`;
   };
   return (
     <Select
-      isDisabled = {isDisabled}
+      isDisabled={isDisabled}
       data-testid="select-RHODA-cluster"
       onSelect={() => setIsOpen(false)}
       selections={
         selectedCluster
           ? {
-            toString: () => getClusterTypeAndName(selectedCluster),
-            compareTo: (selectOption) =>
-              selectOption === selectedCluster.cluster_id,
-          }
+              toString: () => getClusterTypeAndName(selectedCluster),
+              compareTo: (selectOption) =>
+                selectOption === selectedCluster.cluster_id,
+            }
           : undefined
       }
       isOpen={isOpen}
@@ -97,13 +114,13 @@ const InstallClusterModalContent = (props) => {
         </TextContent>
       </StackItem>
       <StackItem>
-        <Split style={{ alignItems: "center" }}>
+        <Split style={{ alignItems: 'center' }}>
           <SplitItem>
             <TextContent className="pf-u-mb-sm">
               <Text component="p">{textContent.selectClusterLabel}</Text>
             </TextContent>
           </SplitItem>
-          <SplitItem style={{ marginLeft: "5px" }}>
+          <SplitItem style={{ marginLeft: '5px' }}>
             <Popover
               headerContent="Clusters"
               bodyContent={
@@ -134,7 +151,7 @@ const InstallClusterModalContent = (props) => {
         <ClusterSelect {...props} />
       </StackItem>
       <StackItem>
-        {props.selectedCluster && props.selectedCluster.plan?.type === 'ARO' &&
+        {props.selectedCluster && props.selectedCluster.plan?.type === 'ARO' && (
           <Alert
             variant="info"
             isInline
@@ -155,20 +172,23 @@ const InstallClusterModalContent = (props) => {
               Quick Start Guide
             </Button>
           </Alert>
-        }
+        )}
       </StackItem>
     </Stack>
   );
 };
 
-const UpgradeClusterModalContent = ({ handleStrategyChange, upgradeStrategy, ...props }) => {
+const UpgradeClusterModalContent = ({
+  handleStrategyChange,
+  upgradeStrategy,
+  ...props
+}) => {
   const upgradeBody = (
     <TextContent>
-      <Text component="small">{textContent.upgradeClusterSelectDescription}</Text>
-      <ClusterSelect
-        {...props}
-        isDisabled={upgradeStrategy !== "Upgrade"}
-      />
+      <Text component="small">
+        {textContent.upgradeClusterSelectDescription}
+      </Text>
+      <ClusterSelect {...props} isDisabled={upgradeStrategy !== 'Upgrade'} />
       <TextContent>
         <Text>{textContent.upgradeClusterPrerequisites}</Text>
         <List>
@@ -187,8 +207,8 @@ const UpgradeClusterModalContent = ({ handleStrategyChange, upgradeStrategy, ...
           name="upgrade-cluster"
           data-testid="radio-RHODA-action-upgrade"
           label={textContent.upgradeClusterSelectLabel}
-          onChange={() => handleStrategyChange("Upgrade")}
-          isChecked={upgradeStrategy === "Upgrade"}
+          onChange={() => handleStrategyChange('Upgrade')}
+          isChecked={upgradeStrategy === 'Upgrade'}
           body={upgradeBody}
         />
       </StackItem>
@@ -198,8 +218,8 @@ const UpgradeClusterModalContent = ({ handleStrategyChange, upgradeStrategy, ...
           name="create-cluster"
           data-testid="radio-RHODA-action-create"
           label={textContent.createClusterLabel}
-          onChange={() => handleStrategyChange("Create")}
-          isChecked={upgradeStrategy === "Create"}
+          onChange={() => handleStrategyChange('Create')}
+          isChecked={upgradeStrategy === 'Create'}
         />
       </StackItem>
     </Stack>
@@ -222,7 +242,10 @@ const ClusterModalContent = ({
   upgradeStrategy,
   handleStrategyChange,
 }) => {
-  if (mode === RHODAClusterAddonMode.Detecting || mode === RHODAClusterAddonMode.Installing) {
+  if (
+    mode === RHODAClusterAddonMode.Detecting ||
+    mode === RHODAClusterAddonMode.Installing
+  ) {
     return (
       <Bullseye>
         <Spinner size="xl" />
@@ -260,11 +283,9 @@ const ClusterModalContent = ({
 };
 
 function findValidClusterWithNodes(cluster) {
-  const hasWorkerNodes = !!cluster.metrics?.find(
-    (metric) => {
-      return metric && metric.nodes && metric.nodes.compute >= 2
-    }
-  );
+  const hasWorkerNodes = !!cluster.metrics?.find((metric) => {
+    return metric && metric.nodes && metric.nodes.compute >= 2;
+  });
   return hasWorkerNodes;
 }
 
@@ -275,7 +296,7 @@ async function fetchAddonInquirues(cluster) {
   const getCluster = fetch(
     `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`,
     {
-      method: "get",
+      method: 'get',
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -289,8 +310,12 @@ async function fetchAddonInquirues(cluster) {
 
 function getEligbleRHODAClusters({ value: { clusterId, ...items } }) {
   const hasAddon = items?.requirements?.every(({ enabled }) => enabled);
-  const canInstallAddon = items?.requirements?.every(({ status: { fulfilled } }) => fulfilled);
-  const minimumClusterVersion = items?.requirements[0]?.data["version.raw_id"]?.split("=")[1].trim();
+  const canInstallAddon = items?.requirements?.every(
+    ({ status: { fulfilled } }) => fulfilled
+  );
+  const minimumClusterVersion = items?.requirements[0]?.data['version.raw_id']
+    ?.split('=')[1]
+    .trim();
   return { clusterId, hasAddon, canInstallAddon, minimumClusterVersion };
 }
 
@@ -299,35 +324,54 @@ async function loadClusters() {
   await window.insights.chrome.auth.getUser();
   const token = await window.insights.chrome.auth.getToken();
   const search = `status IN ('Active', 'Reserved')`;
-  const clusters = (await fetch(`https://api.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`, {
-    method: "get",
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then(function (d) { return d.json(); })).items;
+  const clusters = (
+    await fetch(
+      `https://api.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`,
+      {
+        method: 'get',
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then(function (d) {
+      return d.json();
+    })
+  ).items;
   const clusterswithNodes = clusters.filter((cluster) =>
     findValidClusterWithNodes(cluster)
   );
-  const notAROClusters = clusterswithNodes.filter(cluster => cluster.plan?.type !== 'ARO');
-  const clusterAddonInquirues = await Promise.allSettled(notAROClusters.map(fetchAddonInquirues));
-  const clustersAvailability = (
-    clusterAddonInquirues.filter(
-      ({ status }) => status === "fulfilled"
-    )
-  ).reduce((acc, value) => {
-    const result = getEligbleRHODAClusters(value);
-    return {
-      ...acc,
-      [result.clusterId]: result,
-    };
-  }, {});
-  const installableClusters = clusterswithNodes.filter(
-    (cluster) => {
-      if (cluster.plan?.type === 'ARO') return true
-      const isVersionCorrect = cluster.metrics?.every(({ openshift_version }) => semver.gt(semver.valid(semver.coerce(openshift_version)), semver.valid(semver.coerce(clustersAvailability[cluster.cluster_id]?.minimumClusterVersion))));
-      return clustersAvailability[cluster.cluster_id]?.canInstallAddon && isVersionCorrect;
-    }
+  const notAROClusters = clusterswithNodes.filter(
+    (cluster) => cluster.plan?.type !== 'ARO'
   );
+  const clusterAddonInquirues = await Promise.allSettled(
+    notAROClusters.map(fetchAddonInquirues)
+  );
+  const clustersAvailability = clusterAddonInquirues
+    .filter(({ status }) => status === 'fulfilled')
+    .reduce((acc, value) => {
+      const result = getEligbleRHODAClusters(value);
+      return {
+        ...acc,
+        [result.clusterId]: result,
+      };
+    }, {});
+  const installableClusters = clusterswithNodes.filter((cluster) => {
+    if (cluster.plan?.type === 'ARO') return true;
+    const isVersionCorrect = cluster.metrics?.every(({ openshift_version }) =>
+      semver.gt(
+        semver.valid(semver.coerce(openshift_version)),
+        semver.valid(
+          semver.coerce(
+            clustersAvailability[cluster.cluster_id]?.minimumClusterVersion
+          )
+        )
+      )
+    );
+    return (
+      clustersAvailability[cluster.cluster_id]?.canInstallAddon &&
+      isVersionCorrect
+    );
+  });
   return {
     installableClusters,
     clusters,
@@ -338,14 +382,21 @@ const HomePage = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [selectedCluster, setSelectedCluster] = useState();
-  const [upgradeStrategy, setUpgradeStrategy] = useState("Upgrade");
-  const [{ mode, clusters }, setClustersState] = useState({ clusters: [], mode: RHODAClusterAddonMode.Detecting });
+  const [upgradeStrategy, setUpgradeStrategy] = useState('Upgrade');
+  const [{ mode, clusters }, setClustersState] = useState({
+    clusters: [],
+    mode: RHODAClusterAddonMode.Detecting,
+  });
   const { analytics } = useChrome();
 
   const modalActions = (mode) => {
-    const isAROClusterSelected = selectedCluster && selectedCluster.plan?.type === 'ARO';
-    if (mode === RHODAClusterAddonMode.Detecting || mode === RHODAClusterAddonMode.Installing) {
-      return []
+    const isAROClusterSelected =
+      selectedCluster && selectedCluster.plan?.type === 'ARO';
+    if (
+      mode === RHODAClusterAddonMode.Detecting ||
+      mode === RHODAClusterAddonMode.Installing
+    ) {
+      return [];
     }
     if (mode === RHODAClusterAddonMode.Install) {
       return [
@@ -353,7 +404,9 @@ const HomePage = () => {
           isDisabled={isAROClusterSelected}
           variant="primary"
           key="install"
-          onClick={() => { installAddon() }}
+          onClick={() => {
+            installAddon();
+          }}
           data-testid="install-RHODA-button"
         >
           {textContent.installClusterAction}
@@ -374,7 +427,7 @@ const HomePage = () => {
         >
           {textContent.cancelClusterAction}
         </Button>,
-      ]
+      ];
     }
     if (mode === RHODAClusterAddonMode.Upgrade) {
       return [
@@ -384,15 +437,15 @@ const HomePage = () => {
           component="a"
           data-testid="upgrade-RHODA-button"
           href={
-            upgradeStrategy === "Create"
+            upgradeStrategy === 'Create'
               ? CREATE_CLUSTER_HREF
               : UPGRADE_CLUSTER_HREF.replace(
-                "{subscriptionID}",
-                selectedCluster?.id || ""
-              )
+                  '{subscriptionID}',
+                  selectedCluster?.id || ''
+                )
           }
         >
-          {upgradeStrategy === "Create"
+          {upgradeStrategy === 'Create'
             ? textContent.createClusterAction
             : textContent.upgradeAction}
         </Button>,
@@ -404,7 +457,7 @@ const HomePage = () => {
         >
           {textContent.cancelClusterAction}
         </Button>,
-      ]
+      ];
     }
     if (mode === RHODAClusterAddonMode.Create) {
       return [
@@ -424,7 +477,7 @@ const HomePage = () => {
         >
           {textContent.cancelClusterAction}
         </Button>,
-      ]
+      ];
     }
   };
 
@@ -463,92 +516,124 @@ const HomePage = () => {
     setIsModalOpen(false);
     setClustersState({ mode: RHODAClusterAddonMode.Detecting, clusters: [] });
     if (res && res.state === 'ready') {
-      dispatch(addNotification({
-        variant: 'success',
-        title: 'RHODA add-on successfully installed',
-        description:
-          <>
-            <p>The add-on has been installed on {selectedCluster.display_name}. To view the cluster or to interact with it go to the OpenShift Cluster Manager (OCM).</p>
-            <br />
-            <Button
-              variant="link"
-              component="a"
-              href={selectedCluster.console_url}
-              target="_blank"
-              rel="noopener noreferrer"
-              icon={<ExternalLinkAltIcon />}
-              iconPosition="right"
-              isInline
-            >
-              Go to the OpenShift Cluster Manager console
-            </Button>
-          </>
-      }))
+      dispatch(
+        addNotification({
+          variant: 'success',
+          title: 'RHODA add-on successfully installed',
+          description: (
+            <>
+              <p>
+                The add-on has been installed on {selectedCluster.display_name}.
+                To view the cluster or to interact with it go to the OpenShift
+                Cluster Manager (OCM).
+              </p>
+              <br />
+              <Button
+                variant="link"
+                component="a"
+                href={selectedCluster.console_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                icon={<ExternalLinkAltIcon />}
+                iconPosition="right"
+                isInline
+              >
+                Go to the OpenShift Cluster Manager console
+              </Button>
+            </>
+          ),
+        })
+      );
     }
 
     if (res && res.state === 'installing') {
-      dispatch(addNotification({
-        variant: 'info',
-        title: 'Add-on installation in progress',
-        description:
-          <>
-            <p>The Red Hat OpenShift Database Access add-on is being installed on the cluster you selected. To monitor the installation progress click on the link below.</p>
-            <br />
-            <Button
-              variant="link"
-              component="a"
-              href={INSTALL_ADDON_HREF.replace("{subscriptionID}",selectedCluster?.id || "")}
-              rel="noopener noreferrer"
-              icon={<ExternalLinkAltIcon />}
-              iconPosition="right"
-              isInline
-            >
-              View progress
-            </Button>
-          </>
-      }))
+      dispatch(
+        addNotification({
+          variant: 'info',
+          title: 'Add-on installation in progress',
+          description: (
+            <>
+              <p>
+                The Red Hat OpenShift Database Access add-on is being installed
+                on the cluster you selected. To monitor the installation
+                progress click on the link below.
+              </p>
+              <br />
+              <Button
+                variant="link"
+                component="a"
+                href={INSTALL_ADDON_HREF.replace(
+                  '{subscriptionID}',
+                  selectedCluster?.id || ''
+                )}
+                rel="noopener noreferrer"
+                icon={<ExternalLinkAltIcon />}
+                iconPosition="right"
+                isInline
+              >
+                View progress
+              </Button>
+            </>
+          ),
+        })
+      );
     }
 
     if (res && res.kind === 'Error') {
-      dispatch(addNotification({
-        variant: 'danger',
-        title: 'RHODA add-on successfully failed',
-        description: res && res.reason ? res.reason : `The add-on could not be installed on ${selectedCluster.display_name}.`
-      }))
+      dispatch(
+        addNotification({
+          variant: 'danger',
+          title: 'RHODA add-on successfully failed',
+          description:
+            res && res.reason
+              ? res.reason
+              : `The add-on could not be installed on ${selectedCluster.display_name}.`,
+        })
+      );
     }
-  }
+  };
 
   const installAddon = async () => {
     await window.insights.chrome.auth.getUser();
     const token = await window.insights.chrome.auth.getToken();
     const payload = {
       addon: { id: RHODA_ADDON_ID },
-      billing: { billing_model: "standard" }
+      billing: { billing_model: 'standard' },
     };
     setClustersState({
       mode: RHODAClusterAddonMode.Installing,
     });
-    await fetch(`https://api.openshift.com/api/clusters_mgmt/v1/clusters/${selectedCluster.cluster_id}/addons`, {
-      method: "post",
-      headers: {
-        Authorization: `Bearer ${token}`,
-        'Content-Type': 'application/json',
-        Accept: 'application/json',
-      },
-      body: JSON.stringify(payload)
-    })
+    await fetch(
+      `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${selectedCluster.cluster_id}/addons`,
+      {
+        method: 'post',
+        headers: {
+          Authorization: `Bearer ${token}`,
+          'Content-Type': 'application/json',
+          Accept: 'application/json',
+        },
+        body: JSON.stringify(payload),
+      }
+    )
       .then((response) => response.json())
       .then((data) => parsePayload(data))
-      .catch(err => {
+      .catch((err) => {
         setIsModalOpen(false);
-        setClustersState({ mode: RHODAClusterAddonMode.Detecting, clusters: [] });
-        dispatch(addNotification({
-          variant: 'danger',
-          title: 'RHODA add-on successfully failed',
-          description: err && err.reason ? err.reason : `The add-on could not be installed on ${selectedCluster.display_name}. Please try again later.`
-        }))
-      })
-
+        setClustersState({
+          mode: RHODAClusterAddonMode.Detecting,
+          clusters: [],
+        });
+        dispatch(
+          addNotification({
+            variant: 'danger',
+            title: 'RHODA add-on successfully failed',
+            description:
+              err && err.reason
+                ? err.reason
+                : `The add-on could not be installed on ${selectedCluster.display_name}. Please try again later.`,
+          })
+        );
+      });
   };
 
   const handleInstallModalOpen = () => {
@@ -564,7 +649,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(clearNotifications());
-  }, [])
+  }, []);
 
   return (
     <React.Fragment>
@@ -576,7 +661,8 @@ const HomePage = () => {
         actions={modalActions(mode)}
         title={clusterModalTitles[mode]}
         description={
-          mode !== RHODAClusterAddonMode.Detecting || mode !== RHODAClusterAddonMode.Installing ? (
+          mode !== RHODAClusterAddonMode.Detecting ||
+          mode !== RHODAClusterAddonMode.Installing ? (
             <Title headingLevel="h2" size="md">
               {clusterModalDescriptions[mode]}
             </Title>
@@ -605,7 +691,12 @@ const HomePage = () => {
                     Add-on service for managed OpenShift
                   </Text>
                   <Text>
-                    OpenShift Database Access helps accelerate development for applications using cloud-hosted database services like MongoDB Atlas, Crunchy Bridge, CockroachDB or Amazon’s Aurora and Relational Database Service (RDS) with support for popular database engines, including: MySQL, PostgreSQL, SQL Server, MariaDB, and Oracle.
+                    OpenShift Database Access helps accelerate development for
+                    applications using cloud-hosted database services like
+                    MongoDB Atlas, Crunchy Bridge, CockroachDB or Amazon’s
+                    Aurora and Relational Database Service (RDS) with support
+                    for popular database engines, including: MySQL, PostgreSQL,
+                    SQL Server, MariaDB, and Oracle.
                   </Text>
                   <Text>
                     To learn more access the &nbsp;
