@@ -10,7 +10,7 @@ const { config: webpackConfig, plugins } = config({
   appUrl: process.env.BETA
     ? '/beta/application-services/databases'
     : '/application-services/databases',
-  env: process.env.BETA ? 'prod-beta' : 'prod-stable',
+  env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   standalone: Boolean(process.env.STANDALONE),
 });
 plugins.push(...commonPlugins);
