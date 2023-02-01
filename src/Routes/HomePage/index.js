@@ -347,7 +347,7 @@ async function loadClusters() {
     notAROClusters.map(fetchAddonInquirues)
   );
   const clustersAvailability = clusterAddonInquirues
-    .filter(({ status }) => status === 'fulfilled')
+    .filter(({ status, value: {kind} }) => status === 'fulfilled' && kind !== 'Error')
     .reduce((acc, value) => {
       const result = getEligbleRHODAClusters(value);
       return {
@@ -357,6 +357,7 @@ async function loadClusters() {
     }, {});
   const installableClusters = clusterswithNodes.filter((cluster) => {
     if (cluster.plan?.type === 'ARO') return true;
+    if (clustersAvailability[cluster.cluster_id] === undefined) return false;
     const isVersionCorrect = cluster.metrics?.every(({ openshift_version }) =>
       semver.gt(
         semver.valid(semver.coerce(openshift_version)),
