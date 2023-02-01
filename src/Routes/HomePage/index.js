@@ -347,7 +347,10 @@ async function loadClusters() {
     notAROClusters.map(fetchAddonInquirues)
   );
   const clustersAvailability = clusterAddonInquirues
-    .filter(({ status, value: {kind} }) => status === 'fulfilled' && kind !== 'Error')
+    .filter(
+      ({ status, value: { kind } }) =>
+        status === 'fulfilled' && kind !== 'Error'
+    )
     .reduce((acc, value) => {
       const result = getEligbleRHODAClusters(value);
       return {
