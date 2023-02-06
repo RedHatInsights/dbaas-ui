@@ -293,15 +293,15 @@ async function fetchAddonInquirues(cluster) {
   // TODO: FIx the data fetching according the app standards
   await window.insights.chrome.auth.getUser();
   const token = await window.insights.chrome.auth.getToken();
-  const getCluster = fetch(
-    `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`,
-    {
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }
-  ).then((d) => d.json());
+  const url = window.insights.chrome.isProd()
+    ? `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`
+    : `https://api.stage.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`;
+  const getCluster = fetch(url, {
+    method: 'get',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  }).then((d) => d.json());
   return getCluster.then((data) => ({
     clusterId: cluster.cluster_id,
     ...data,
@@ -324,16 +324,16 @@ async function loadClusters() {
   await window.insights.chrome.auth.getUser();
   const token = await window.insights.chrome.auth.getToken();
   const search = `status IN ('Active', 'Reserved')`;
+  const url = window.insights.chrome.isProd()
+    ? `https://api.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`
+    : `https://api.stage.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`;
   const clusters = (
-    await fetch(
-      `https://api.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`,
-      {
-        method: 'get',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    ).then(function (d) {
+    await fetch(url, {
+      method: 'get',
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then(function (d) {
       return d.json();
     })
   ).items;
@@ -600,6 +600,9 @@ const HomePage = () => {
   const installAddon = async () => {
     await window.insights.chrome.auth.getUser();
     const token = await window.insights.chrome.auth.getToken();
+    const url = window.insights.chrome.isProd()
+      ? `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${selectedCluster.cluster_id}/addons`
+      : `https://api.stage.openshift.com/api/clusters_mgmt/v1/clusters/${selectedCluster.cluster_id}/addons`;
     const payload = {
       addon: { id: RHODA_ADDON_ID },
       billing: { billing_model: 'standard' },
@@ -607,18 +610,15 @@ const HomePage = () => {
     setClustersState({
       mode: RHODAClusterAddonMode.Installing,
     });
-    await fetch(
-      `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${selectedCluster.cluster_id}/addons`,
-      {
-        method: 'post',
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          Accept: 'application/json',
-        },
-        body: JSON.stringify(payload),
-      }
-    )
+    await fetch(url, {
+      method: 'post',
+      headers: {
+        Authorization: `Bearer ${token}`,
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(payload),
+    })
       .then((response) => response.json())
       .then((data) => parsePayload(data))
       .catch((err) => {
