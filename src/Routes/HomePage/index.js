@@ -654,7 +654,7 @@ const HomePage = () => {
   useEffect(() => {
     dispatch(clearNotifications());
   }, []);
-  
+
   return (
     <React.Fragment>
       <Modal
