@@ -66,6 +66,7 @@ const ClusterSelect = ({
   };
   return (
     <Select
+      maxHeight={200}
       isDisabled={isDisabled}
       data-testid="select-RHODA-cluster"
       onSelect={() => setIsOpen(false)}

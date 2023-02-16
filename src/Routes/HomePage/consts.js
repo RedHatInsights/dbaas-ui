@@ -3,6 +3,7 @@ export const RHOpenShiftServiceName = 'Red Hat OpenShift Service';
 export const ClusterTypeAndNameMapping = {
   ARO: 'Azure Red Hat OpenShift',
   OSD: 'Openshift Dedicated',
+  MOA: 'Red Hat OpenShift Service on AWS',
 };
 
 export const RHODAClusterAddonMode = {
