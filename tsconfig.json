@@ -1,0 +1,31 @@
+{
+    "compilerOptions": {
+      "forceConsistentCasingInFileNames": true,
+      "resolveJsonModule": true,
+      "module": "esnext",
+      "lib": ["dom", "esnext"],
+      "importHelpers": true,
+      "declaration": false,
+      "sourceMap": true,
+      "strict": true,
+      "noUnusedLocals": true,
+      "noUnusedParameters": true,
+      "noImplicitReturns": true,
+      "noFallthroughCasesInSwitch": true,
+      "moduleResolution": "node",
+      "jsx": "react-jsx",
+      "esModuleInterop": true,
+      "target": "es6",
+      "noImplicitAny": true,
+      "skipLibCheck": true,
+      "outDir": "./dist",
+      "baseUrl": ".",
+      "paths": {
+        "@app/*": ["src/app/*"],
+        "@test-utils/*": ["test-utils/*"]
+      }
+    },
+    "exclude": ["**/test_common", "node_modules"],
+    "include": ["./src/*", "./src/**/*"]
+  }
+  
