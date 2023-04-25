@@ -579,7 +579,7 @@ const HomePage = () => {
                       href="https://github.com/RHEcosystemAppEng/dbaas-operator"
                     >
                       GitHub
-                    </a>
+                    </a>{' '}
                     as a community project. The project documentation, along
                     with a{' '}
                     <a
