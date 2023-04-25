@@ -1,12 +1,11 @@
 /* eslint react/prop-types: 0 */
 import React from 'react';
-import semver from 'semver';
 import { useDispatch } from 'react-redux';
 import {
   addNotification,
   clearNotifications,
 } from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
@@ -19,7 +18,6 @@ import {
   Stack,
   StackItem,
   Modal,
-  Flex,
   Bullseye,
   Spinner,
   List,
@@ -283,106 +281,6 @@ const ClusterModalContent = ({
   return null;
 };
 
-function findValidClusterWithNodes(cluster) {
-  const hasWorkerNodes = !!cluster.metrics?.find((metric) => {
-    return metric && metric.nodes && metric.nodes.compute >= 2;
-  });
-  return hasWorkerNodes;
-}
-
-async function fetchAddonInquirues(cluster) {
-  // TODO: FIx the data fetching according the app standards
-  await window.insights.chrome.auth.getUser();
-  const token = await window.insights.chrome.auth.getToken();
-  const url = window.insights.chrome.isProd()
-    ? `https://api.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`
-    : `https://api.stage.openshift.com/api/clusters_mgmt/v1/clusters/${cluster.cluster_id}/addon_inquiries/${RHODA_ADDON_ID}`;
-  const getCluster = fetch(url, {
-    method: 'get',
-    headers: {
-      Authorization: `Bearer ${token}`,
-    },
-  }).then((d) => d.json());
-  return getCluster.then((data) => ({
-    clusterId: cluster.cluster_id,
-    ...data,
-  }));
-}
-
-function getEligbleRHODAClusters({ value: { clusterId, ...items } }) {
-  const hasAddon = items?.requirements?.every(({ enabled }) => enabled);
-  const canInstallAddon = items?.requirements?.every(
-    ({ status: { fulfilled } }) => fulfilled
-  );
-  const minimumClusterVersion = items?.requirements[0]?.data['version.raw_id']
-    ?.split('=')[1]
-    .trim();
-  return { clusterId, hasAddon, canInstallAddon, minimumClusterVersion };
-}
-
-async function loadClusters() {
-  // TODO: FIx the data fetching according the app standards
-  await window.insights.chrome.auth.getUser();
-  const token = await window.insights.chrome.auth.getToken();
-  const search = `status IN ('Active', 'Reserved')`;
-  const url = window.insights.chrome.isProd()
-    ? `https://api.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`
-    : `https://api.stage.openshift.com/api/accounts_mgmt/v1/subscriptions?search=${search}&fetchMetrics=true`;
-  const clusters = (
-    await fetch(url, {
-      method: 'get',
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    }).then(function (d) {
-      return d.json();
-    })
-  ).items;
-  const clusterswithNodes = clusters.filter((cluster) =>
-    findValidClusterWithNodes(cluster)
-  );
-  const notAROClusters = clusterswithNodes.filter(
-    (cluster) => cluster.plan?.type !== 'ARO'
-  );
-  const clusterAddonInquirues = await Promise.allSettled(
-    notAROClusters.map(fetchAddonInquirues)
-  );
-  const clustersAvailability = clusterAddonInquirues
-    .filter(
-      ({ status, value: { kind } }) =>
-        status === 'fulfilled' && kind !== 'Error'
-    )
-    .reduce((acc, value) => {
-      const result = getEligbleRHODAClusters(value);
-      return {
-        ...acc,
-        [result.clusterId]: result,
-      };
-    }, {});
-  const installableClusters = clusterswithNodes.filter((cluster) => {
-    if (cluster.plan?.type === 'ARO') return true;
-    if (clustersAvailability[cluster.cluster_id] === undefined) return false;
-    const isVersionCorrect = cluster.metrics?.every(({ openshift_version }) =>
-      semver.gt(
-        semver.valid(semver.coerce(openshift_version)),
-        semver.valid(
-          semver.coerce(
-            clustersAvailability[cluster.cluster_id]?.minimumClusterVersion
-          )
-        )
-      )
-    );
-    return (
-      clustersAvailability[cluster.cluster_id]?.canInstallAddon &&
-      isVersionCorrect
-    );
-  });
-  return {
-    installableClusters,
-    clusters,
-  };
-}
-
 const HomePage = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -499,23 +397,6 @@ const HomePage = () => {
     [RHODAClusterAddonMode.Upgrade]: textContent.installClusterTitle,
     [RHODAClusterAddonMode.Create]: textContent.createClusterTitle,
   };
-
-  const getData = useCallback(async () => {
-    const { clusters, installableClusters } = await loadClusters();
-    if (installableClusters.length > 0) {
-      setClustersState({
-        mode: RHODAClusterAddonMode.Install,
-        clusters: installableClusters,
-      });
-      //Select the first cluster by default
-      setSelectedCluster(installableClusters[0]);
-    } else {
-      setClustersState({
-        mode: RHODAClusterAddonMode.Create,
-        clusters,
-      });
-    }
-  }, [loadClusters]);
 
   const parsePayload = (res) => {
     setIsModalOpen(false);
@@ -641,13 +522,6 @@ const HomePage = () => {
       });
   };
 
-  const handleInstallModalOpen = () => {
-    // eslint-disable-next-line
-    analytics.track('rhoda-install-it-on-cluster-button-click');
-    getData();
-    setIsModalOpen(true);
-  };
-
   const handleSelectCluster = (cluster) => {
     setSelectedCluster(cluster);
   };
@@ -696,6 +570,28 @@ const HomePage = () => {
                     Add-on service for managed OpenShift
                   </Text>
                   <Text>
+                    As of May 1st, 2023, Red Hat OpenShift Database Access will
+                    be discontinued as a managed service on Red Hat Hybrid Cloud
+                    Console. OpenShift Database Access will continue on{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/RHEcosystemAppEng/dbaas-operator"
+                    >
+                      GitHub
+                    </a>
+                    as a community project. The project documentation, along
+                    with a{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/RHEcosystemAppEng/dbaas-operator/blob/release-0.5.0/docs/quick-start-guide/main.adoc"
+                    >
+                      Quick Start Guide
+                    </a>{' '}
+                    can also be found on GitHub.
+                  </Text>
+                  <Text>
                     OpenShift Database Access helps accelerate development for
                     applications using cloud-hosted database services like
                     MongoDB Atlas, Crunchy Bridge, CockroachDB or Amazon’s
@@ -703,48 +599,7 @@ const HomePage = () => {
                     for popular database engines, including: MySQL, PostgreSQL,
                     SQL Server, MariaDB, and Oracle.
                   </Text>
-                  <Text>
-                    To learn more access the &nbsp;
-                    <Button
-                      onClick={() => {
-                        analytics.track('rhoda-get-started-click');
-                      }}
-                      iconPosition="right"
-                      icon={<ExternalLinkAltIcon />}
-                      isInline
-                      variant="link"
-                      component="a"
-                      target="_blank"
-                      href="https://access.redhat.com/documentation/en-us/red_hat_openshift_database_access/1/html-single/quick_start_guide/index"
-                    >
-                      quick start guide
-                    </Button>
-                  </Text>
                 </TextContent>
-              </StackItem>
-              <StackItem>
-                <Flex>
-                  <Button
-                    data-testid="hero-buttonInstall"
-                    ouiaId="button-rhoda-install"
-                    onClick={handleInstallModalOpen}
-                  >
-                    {textContent.installButton}
-                  </Button>
-                  <Button
-                    onClick={() => {
-                      analytics.track('rhoda-try-it-on-sandbox-button-click');
-                    }}
-                    iconPosition="right"
-                    icon={<ExternalLinkAltIcon />}
-                    component="a"
-                    target="_blank"
-                    variant="secondary"
-                    href="https://developers.redhat.com/developer-sandbox"
-                  >
-                    Try it in the Developer Sandbox
-                  </Button>
-                </Flex>
               </StackItem>
             </Stack>
           </GridItem>
