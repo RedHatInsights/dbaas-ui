@@ -572,9 +572,24 @@ const HomePage = () => {
                   <Text>
                     As of May 1st, 2023, Red Hat OpenShift Database Access will
                     be discontinued as a managed service on Red Hat Hybrid Cloud
-                    Console. OpenShift Database Access will continue on GitHub
+                    Console. OpenShift Database Access will continue on{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/RHEcosystemAppEng/dbaas-operator"
+                    >
+                      GitHub
+                    </a>
                     as a community project. The project documentation, along
-                    with a Quick Start Guide can also be found on GitHub.
+                    with a{' '}
+                    <a
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      href="https://github.com/RHEcosystemAppEng/dbaas-operator/blob/release-0.5.0/docs/quick-start-guide/main.adoc"
+                    >
+                      Quick Start Guide
+                    </a>{' '}
+                    can also be found on GitHub.
                   </Text>
                   <Text>
                     OpenShift Database Access helps accelerate development for
