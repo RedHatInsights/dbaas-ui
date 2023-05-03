@@ -22,7 +22,7 @@ const App = () => {
         history.push(event?.domEvent?.href);
       }
     });
-    document.title = 'Database Access | Red Hat OpenShift Application Services';
+    document.title = 'Trusted Content | Red Hat OpenShift Application Services';
     return () => {
       unregister();
     };
