@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="290px" height="291px" viewBox="0 0 290 291" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <title>Ven Diagram</title>
+    <defs>
+        <path d="M146.313975,106 C158.969654,106 171.028048,108.545495 182.000611,113.150188 C176.786592,135.274262 163.506217,154.304159 145.417357,167.000342 C127.519026,154.437933 114.329311,135.676255 108.99998,113.853416 C120.403377,108.804671 133.029627,106 146.313975,106 Z" id="path-1"></path>
+        <filter x="-9.6%" y="-8.2%" width="119.2%" height="123.0%" filterUnits="objectBoundingBox" id="filter-2">
+            <feOffset dx="0" dy="2" in="SourceAlpha" result="shadowOffsetOuter1"></feOffset>
+            <feGaussianBlur stdDeviation="2" in="shadowOffsetOuter1" result="shadowBlurOuter1"></feGaussianBlur>
+            <feColorMatrix values="0 0 0 0 0   0 0 0 0 0   0 0 0 0 0  0 0 0 0.5 0" type="matrix" in="shadowBlurOuter1"></feColorMatrix>
+        </filter>
+    </defs>
+    <g id="Page-2" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Learn-more-temp-page" transform="translate(-454.000000, -863.000000)">
+            <g id="Card-About" transform="translate(314.000000, 668.000000)">
+                <g id="Ven-Diagram" transform="translate(140.000000, 195.000000)">
+                    <circle id="Oval-Copy-4" stroke="#C9190B" stroke-width="3" cx="198" cy="92" r="90.5"></circle>
+                    <circle id="Oval-Copy-5" stroke="#C9190B" stroke-width="3" cx="92" cy="92" r="90.5"></circle>
+                    <circle id="Oval-Copy-7" stroke="#C9190B" stroke-width="3" cx="145.5" cy="198.5" r="91"></circle>
+                    <g id="Combined-Shape">
+                        <use fill="black" fill-opacity="1" filter="url(#filter-2)" xlink:href="#path-1"></use>
+                        <use fill="#C9190B" fill-rule="evenodd" xlink:href="#path-1"></use>
+                    </g>
+                    <text id="Trusted-Content" font-family="RedHatText-Medium, Red Hat Text" font-size="11" font-weight="400" line-spacing="18.2000008" fill="#F0F0F0">
+                        <tspan x="123.705" y="123">Trusted</tspan>
+                        <tspan x="122.627" y="141.200001">Content</tspan>
+                    </text>
+                    <text id="SBOM" font-family="RedHatDisplay-Regular, Red Hat Display" font-size="20" font-weight="normal" line-spacing="30" fill="#C9190B">
+                        <tspan x="36.37" y="93">SBOM</tspan>
+                    </text>
+                    <text id="VEX" font-family="RedHatDisplay-Regular, Red Hat Display" font-size="20" font-weight="normal" line-spacing="30" fill="#C9190B">
+                        <tspan x="203.17" y="94">VEX</tspan>
+                    </text>
+                    <text id="Attestation" font-family="RedHatDisplay-Regular, Red Hat Display" font-size="20" font-weight="normal" line-spacing="30" fill="#C9190B">
+                        <tspan x="98.95" y="240">Attestation</tspan>
+                    </text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>
