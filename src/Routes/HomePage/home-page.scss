@@ -1,9 +1,12 @@
 @import '~@patternfly/patternfly/sass-utilities/_all';
 
 .dbaas-home-page__header {
-  background-image: url('./CND-Tech-Blog-thumbnail.png');
+  background-image: url('./large_TC_icon.png');
+  background-size: 400px;
   background-repeat: no-repeat;
-  background-position: right;
+  background-position: top right 32px;
+  background-color: black;
+  color: white;
 }
 
 @media screen and (max-width: $pf-global--breakpoint--md) {
@@ -12,9 +15,68 @@
   }
 }
 
-.dbaas-home-page__subtitle {
-  color: var(--pf-global--Color--200)
+.pf-c-content {
+  color: white;
 }
+
 .dbaas-home-page__video-card {
   min-height: 250px; // will depend on the actuall video frame
+}
+
+.rh-secure {
+  background-image: url('./analytics.svg');
+  background-size: 50px;
+}
+
+.rh-clipboard {
+  background-image: url('./clipboard.svg');
+  background-size: 35px;
+}
+
+.rh-shield {
+  background-image: url('./shield.svg');
+  background-size: 40px;
+}
+
+.rh-icon {
+  background-position: center;
+  height: 100px;
+  background-repeat: no-repeat;
+  margin-bottom: 10px;
+}
+
+.rh-icon-flex {
+  width: 100%;
+  padding-left: 2em;
+  padding-right: 2em;
+}
+
+.inner-title {
+  font-weight: bold;
+}
+
+.border-gray {
+  border: 1px solid #d2d2d2;
+  background: white;
+  padding: 20px 60px 20px 60px;
+}
+
+.pad-bottom {
+  padding-bottom: 20px;
+}
+
+.appsrv-marketing--page-section--marketing {
+  border-bottom: 1px solid #d2d2d2;
+}
+
+.venn-img {
+  background-image: url('./ven-diagram.svg');
+  background-size: 275px;
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 275px;
+}
+
+.pf-l-split__item.pf-m-fill {
+  flex: 1;
 }
