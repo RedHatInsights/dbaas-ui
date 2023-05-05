@@ -8,8 +8,8 @@ const { config: webpackConfig, plugins } = config({
   deployment: process.env.BETA ? 'beta/apps' : 'apps',
   useProxy: true,
   appUrl: process.env.BETA
-    ? '/beta/application-services/databases'
-    : '/application-services/databases',
+    ? '/preview/application-services/trusted-content'
+    : '/application-services/trusted-content',
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   standalone: Boolean(process.env.STANDALONE),
 });
