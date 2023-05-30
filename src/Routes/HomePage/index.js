@@ -144,7 +144,7 @@ const HomePage = () => {
                     ouiaId="button-try-tc-1"
                     isLarge
                   >
-                    Join the waitlist
+                    Join the waiting list
                   </Button>
                 </TextContent>
               </StackItem>
@@ -286,7 +286,7 @@ const HomePage = () => {
                   ouiaId="button-try-tc-2"
                   isLarge
                 >
-                  Join the waitlist
+                  Join the waiting list
                 </Button>
               </StackItem>
             </Stack>
