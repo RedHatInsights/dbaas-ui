@@ -1,12 +1,12 @@
 /* eslint react/prop-types: 0 */
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from 'react-redux';
 import {
   addNotification,
   clearNotifications,
-} from "@redhat-cloud-services/frontend-components-notifications/redux";
-import { useEffect } from "react";
-import useChrome from "@redhat-cloud-services/frontend-components/useChrome";
+} from '@redhat-cloud-services/frontend-components-notifications/redux';
+import { useEffect } from 'react';
+import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
@@ -24,11 +24,11 @@ import {
   Flex,
   FlexItem,
   Popover,
-} from "@patternfly/react-core";
-import { PageHeader } from "@redhat-cloud-services/frontend-components/PageHeader";
-import { ExternalLinkAltIcon } from "@patternfly/react-icons";
+} from '@patternfly/react-core';
+import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
+import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 
-import "./home-page.scss";
+import './home-page.scss';
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -40,8 +40,8 @@ const HomePage = () => {
       setHasJoinedList(true);
       dispatch(
         addNotification({
-          variant: "success",
-          title: "Thank you",
+          variant: 'success',
+          title: 'Thank you',
           description: (
             <>
               <p>
@@ -69,9 +69,9 @@ const HomePage = () => {
     } else {
       dispatch(
         addNotification({
-          variant: "success",
+          variant: 'success',
           title:
-            "Thank you for your interest. We are processing your previous request.",
+            'Thank you for your interest. We are processing your previous request.',
           description: (
             <>
               <p>
@@ -106,7 +106,7 @@ const HomePage = () => {
 
   const launchTrustedContentButton = (
     <Button
-      href={TRUSTIFICATION_URL}
+      href={TRUSTIFICATION_URL} /* eslint-disable-line */
       target="_blank"
       rel="noreferrer"
       component="a"
@@ -163,7 +163,7 @@ const HomePage = () => {
                         footerContent={
                           <Button
                             onClick={() => {
-                              analytics.track("tc-learn-more-1-click");
+                              analytics.track('tc-learn-more-1-click');
                               waitlistNotif();
                               return false;
                             }}
@@ -177,8 +177,8 @@ const HomePage = () => {
                           ouiaId="button-subscribe-tc-1"
                           isLarge
                           style={{
-                            color: "white",
-                            "--pf-c-button--after--BorderColor": "white",
+                            color: 'white',
+                            '--pf-c-button--after--BorderColor': 'white',
                           }}
                         >
                           Subscribe
@@ -198,12 +198,12 @@ const HomePage = () => {
           variant="light"
           className="appsrv-marketing--page-section--marketing pf-u-background-color-100"
         >
-          <Flex justifyContent={{ default: "justifyContentSpaceBetween" }}>
+          <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
             <Flex>
-              <FlexItem spacer={{ default: "spacerxl" }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
             </Flex>
 
-            <Flex flex={{ default: "flex_1" }}>
+            <Flex flex={{ default: 'flex_1' }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -223,7 +223,7 @@ const HomePage = () => {
 
             <Divider className="pf-m-vertical" />
 
-            <Flex flex={{ default: "flex_1" }}>
+            <Flex flex={{ default: 'flex_1' }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -243,7 +243,7 @@ const HomePage = () => {
 
             <Divider className="pf-m-vertical" />
 
-            <Flex flex={{ default: "flex_1" }}>
+            <Flex flex={{ default: 'flex_1' }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -262,7 +262,7 @@ const HomePage = () => {
             </Flex>
 
             <Flex>
-              <FlexItem spacer={{ default: "spacerxl" }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
             </Flex>
           </Flex>
         </PageSection>
