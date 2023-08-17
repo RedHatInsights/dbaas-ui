@@ -1,12 +1,12 @@
 /* eslint react/prop-types: 0 */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   addNotification,
   clearNotifications,
-} from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { useEffect } from 'react';
-import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+} from "@redhat-cloud-services/frontend-components-notifications/redux";
+import { useEffect } from "react";
+import useChrome from "@redhat-cloud-services/frontend-components/useChrome";
 
 import {
   Button,
@@ -23,11 +23,12 @@ import {
   Divider,
   Flex,
   FlexItem,
-} from '@patternfly/react-core';
-import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+  Popover,
+} from "@patternfly/react-core";
+import { PageHeader } from "@redhat-cloud-services/frontend-components/PageHeader";
+import { ExternalLinkAltIcon } from "@patternfly/react-icons";
 
-import './home-page.scss';
+import "./home-page.scss";
 
 const HomePage = () => {
   const dispatch = useDispatch();
@@ -39,16 +40,14 @@ const HomePage = () => {
       setHasJoinedList(true);
       dispatch(
         addNotification({
-          variant: 'success',
-          title:
-            'We have received your request. While you are waiting, please join our Slack channel.',
+          variant: "success",
+          title: "Thank you",
           description: (
             <>
               <p>
-                We are working hard to get you early access. After we approve
-                your request, we will send you an email notification with
-                information about how you can access and start using the
-                service.
+                You have been added to the waiting list. Red Hat will notify you
+                when susbcription options for the Trusted Content service become
+                available
               </p>
               <br />
               <Button
@@ -70,9 +69,9 @@ const HomePage = () => {
     } else {
       dispatch(
         addNotification({
-          variant: 'success',
+          variant: "success",
           title:
-            'Thank you for your interest. We are processing your previous request.',
+            "Thank you for your interest. We are processing your previous request.",
           description: (
             <>
               <p>
@@ -105,6 +104,20 @@ const HomePage = () => {
     dispatch(clearNotifications());
   }, []);
 
+  const launchTrustedContentButton = (
+    <Button
+      href={TRUSTIFICATION_URL}
+      target="_blank"
+      rel="noreferrer"
+      component="a"
+      variant="primary"
+      ouiaId="button-try-tc-1"
+      isLarge
+    >
+      Launch Trusted Content
+    </Button>
+  );
+
   return (
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-u-p-2xl">
@@ -134,18 +147,45 @@ const HomePage = () => {
                     Use what we use, know what we know.
                   </Text>
                   <Text>&nbsp;</Text>
-                  <Button
-                    onClick={() => {
-                      analytics.track('tc-learn-more-1-click');
-                      waitlistNotif();
-                      return false;
-                    }}
-                    variant="primary"
-                    ouiaId="button-try-tc-1"
-                    isLarge
-                  >
-                    Join the waiting list
-                  </Button>
+                  <Split hasGutter>
+                    <SplitItem>{launchTrustedContentButton}</SplitItem>
+                    <SplitItem>
+                      <Popover
+                        aria-label="Subcribe popover"
+                        headerContent={<div>Subscribe</div>}
+                        bodyContent={
+                          <div>
+                            you cannot subscribe to the service right now, but
+                            the service is currently free for you to use. Please
+                            sign up below if you want to get notified about
+                          </div>
+                        }
+                        footerContent={
+                          <Button
+                            onClick={() => {
+                              analytics.track("tc-learn-more-1-click");
+                              waitlistNotif();
+                              return false;
+                            }}
+                          >
+                            Add me to the waiting list
+                          </Button>
+                        }
+                      >
+                        <Button
+                          variant="secondary"
+                          ouiaId="button-subscribe-tc-1"
+                          isLarge
+                          style={{
+                            color: "white",
+                            "--pf-c-button--after--BorderColor": "white",
+                          }}
+                        >
+                          Subscribe
+                        </Button>
+                      </Popover>
+                    </SplitItem>
+                  </Split>
                 </TextContent>
               </StackItem>
             </Stack>
@@ -158,12 +198,12 @@ const HomePage = () => {
           variant="light"
           className="appsrv-marketing--page-section--marketing pf-u-background-color-100"
         >
-          <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
+          <Flex justifyContent={{ default: "justifyContentSpaceBetween" }}>
             <Flex>
-              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: "spacerxl" }}>&nbsp;</FlexItem>
             </Flex>
 
-            <Flex flex={{ default: 'flex_1' }}>
+            <Flex flex={{ default: "flex_1" }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -183,7 +223,7 @@ const HomePage = () => {
 
             <Divider className="pf-m-vertical" />
 
-            <Flex flex={{ default: 'flex_1' }}>
+            <Flex flex={{ default: "flex_1" }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -203,7 +243,7 @@ const HomePage = () => {
 
             <Divider className="pf-m-vertical" />
 
-            <Flex flex={{ default: 'flex_1' }}>
+            <Flex flex={{ default: "flex_1" }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
@@ -222,7 +262,7 @@ const HomePage = () => {
             </Flex>
 
             <Flex>
-              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: "spacerxl" }}>&nbsp;</FlexItem>
             </Flex>
           </Flex>
         </PageSection>
@@ -275,20 +315,7 @@ const HomePage = () => {
                   from OpenSource to the Enterprise.
                 </p>
               </StackItem>
-              <StackItem>
-                <Button
-                  onClick={() => {
-                    analytics.track('tc-learn-more-2-click');
-                    waitlistNotif();
-                    return false;
-                  }}
-                  variant="primary"
-                  ouiaId="button-try-tc-2"
-                  isLarge
-                >
-                  Join the waiting list
-                </Button>
-              </StackItem>
+              <StackItem>{launchTrustedContentButton}</StackItem>
             </Stack>
           </SplitItem>
         </Split>
