@@ -9,7 +9,7 @@ const { config: webpackConfig, plugins } = config({
     TRUSTIFICATION_URL: JSON.stringify(
       process.env.BETA
         ? 'https://staging.trustification.dev'
-        : 'https://trustification.dev'
+        : 'https://trust.rhcloud.com'
     ),
   },
   ...(process.env.BETA && { deployment: 'beta/apps' }),
