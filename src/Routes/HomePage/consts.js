@@ -66,3 +66,9 @@ export const textContent = {
   AROClusterAlertContent:
     'Installing OpenShift Database Access on an Azure Red Hat OpenShift (ARO) cluster requires a different process. See the Red Hat OpenShift Database Access Quick Start Guide for more details.',
 };
+
+export const getTrustificationUrl = () => {
+  return window.location.hostname.indexOf('stage.') === -1
+    ? 'https://trust.rhcloud.com'
+    : 'https://staging.trustification.dev';
+};
