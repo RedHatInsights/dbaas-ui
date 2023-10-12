@@ -12,13 +12,6 @@ const { config: webpackConfig, plugins } = config({
     : '/application-services/trusted-content',
   env: process.env.BETA ? 'stage-beta' : 'stage-stable',
   standalone: Boolean(process.env.STANDALONE),
-  definePlugin: {
-    TRUSTIFICATION_URL: JSON.stringify(
-      process.env.BETA
-        ? 'https://staging.trustification.dev'
-        : 'https://trust.rhcloud.com'
-    ),
-  },
 });
 plugins.push(...commonPlugins);
 

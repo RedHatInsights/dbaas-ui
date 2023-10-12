@@ -27,7 +27,7 @@ import {
 } from '@patternfly/react-core';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-
+import { getTrustificationUrl } from './consts';
 import './home-page.scss';
 
 const HomePage = () => {
@@ -106,7 +106,7 @@ const HomePage = () => {
 
   const launchTrustedContentButton = (
     <Button
-      href={TRUSTIFICATION_URL} /* eslint-disable-line */
+      href={getTrustificationUrl()}
       target="_blank"
       rel="noreferrer"
       component="a"
