@@ -5,13 +5,6 @@ const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
 
 const { config: webpackConfig, plugins } = config({
   rootFolder: resolve(__dirname, '../'),
-  definePlugin: {
-    TRUSTIFICATION_URL: JSON.stringify(
-      process.env.BETA
-        ? 'https://staging.trustification.dev'
-        : 'https://trust.rhcloud.com'
-    ),
-  },
   ...(process.env.BETA && { deployment: 'beta/apps' }),
 });
 plugins.push(...commonPlugins);
