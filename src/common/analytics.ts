@@ -5,7 +5,9 @@ const TrustedArtifactSignerEvents = {
 };
 
 // all analytics events for trusted content go here
-const TrustedContentEvents = {};
+const TrustedContentEvents = {
+  TC_WAITING_LIST_CLICK: 'tc-learn-more-1-click',
+};
 
 const ANALYTICS_EVENTS = {
   ...TrustedArtifactSignerEvents,
