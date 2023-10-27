@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 const webpack = require('webpack');
 const { resolve } = require('path');
 const fedModulePlugin = require('@redhat-cloud-services/frontend-components-config/federated-modules');
