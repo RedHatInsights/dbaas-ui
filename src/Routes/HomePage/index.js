@@ -28,6 +28,7 @@ import {
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import { getTrustificationUrl } from './consts';
+import events from '../../common/analytics';
 import './home-page.scss';
 
 const HomePage = () => {
@@ -102,6 +103,7 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(clearNotifications());
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const launchTrustedContentButton = (
@@ -163,7 +165,7 @@ const HomePage = () => {
                         footerContent={
                           <Button
                             onClick={() => {
-                              analytics.track('tc-learn-more-1-click');
+                              analytics.track(events.TC_WAITING_LIST_CLICK);
                               waitlistNotif();
                               return false;
                             }}
@@ -323,5 +325,7 @@ const HomePage = () => {
     </React.Fragment>
   );
 };
+
+HomePage.displayName = 'HomePage';
 
 export default HomePage;
