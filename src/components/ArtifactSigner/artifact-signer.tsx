@@ -24,10 +24,11 @@ const GettingStarted = () => {
       <TextContent>
         <Text component={TextVariants.p}>
           Trusted Artifact Signer empowers software developers and consumers to
-          securely sign and verify software artifacts - source code, release
-          files, images, binaries, SBOM, playbook, and more to enhance software
-          supply chain security. Signing metadata are stored in a
-          tamper-resistant log for transparency & verification.
+          securely sign and verify software artifacts, such as, source code,
+          release files, container images, binaries, software bill of materials
+          (SBOM), playbooks, and more to enhance software supply chain security.
+          Signing metadata are stored in a tamper-resistant log for transparency
+          & verification.
         </Text>
         <Text component={TextVariants.p}>
           Trusted Artifact Signer provides a production ready deployment of the{' '}
