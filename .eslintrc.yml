@@ -1,4 +1,10 @@
-extends: "@redhat-cloud-services/eslint-config-redhat-cloud-services"
+extends:
+  - "@redhat-cloud-services/eslint-config-redhat-cloud-services"
+  - "plugin:react-hooks/recommended"
+  - "plugin:@typescript-eslint/recommended"
+parser: "@typescript-eslint/parser"
+plugins:
+  - "@typescript-eslint"
 globals:
   insights: 'readonly'
   shallow: readonly
