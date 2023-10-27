@@ -157,7 +157,7 @@ const HomePage = () => {
                           <div>
                             you cannot subscribe to the service right now, but
                             the service is currently free for you to use. Please
-                            sign up below if you want to get notified about
+                            sign up below if you want to get notified about it
                           </div>
                         }
                         footerContent={
