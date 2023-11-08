@@ -111,7 +111,7 @@ export const useDownloadPullSecret = () => {
     const pullSecret: PullSecret = {
       ...accessToken,
       orgId: user.identity.org_id,
-      userId: user.identity.account_number,
+      userId: user.identity.internal.account_id,
     };
 
     const rawPullSecret = new Blob([JSON.stringify(pullSecret)], {
