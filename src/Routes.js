@@ -23,7 +23,7 @@ const Routes = () => (
     }
   >
     <Switch>
-      <Route path="/artifact-signer">
+      <Route path="artifact-signer">
         <TASPage />
       </Route>
       <Route path="/">

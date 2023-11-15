@@ -1,16 +1,16 @@
 import React, { Fragment, useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { useHistory } from 'react-router-dom';
 import { getRegistry } from '@redhat-cloud-services/frontend-components-utilities/Registry';
 import NotificationsPortal from '@redhat-cloud-services/frontend-components-notifications/NotificationPortal';
 import { notificationsReducer } from '@redhat-cloud-services/frontend-components-notifications/redux';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
+import { useNavigate } from "react-router-dom";
 
 import Routes from './Routes';
 import './App.scss';
 
 const App = () => {
-  const history = useHistory();
+  let navigate = useNavigate();
   const chrome = useChrome();
 
   useEffect(() => {
@@ -19,7 +19,7 @@ const App = () => {
     chrome.init();
     const unregister = insights.chrome.on('APP_NAVIGATION', (event) => {
       if (event?.domEvent?.href) {
-        history.push(event?.domEvent?.href);
+        navigate(event?.domEvent?.href)
       }
     });
     document.title = 'Trusted Content | Red Hat OpenShift Application Services';
