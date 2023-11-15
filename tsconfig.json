@@ -1,31 +1,26 @@
 {
-    "compilerOptions": {
+  "compilerOptions": {
+      "outDir": "./dist/",
+      "sourceMap": true,
+      "noImplicitAny": true,
+      "module": "esnext",
+      "target": "esnext",
+      "jsx": "react",
+      "allowJs": true,
+      "moduleResolution": "node",
+      "removeComments": false,
+      "strict": true,
+      "skipLibCheck": true,
+      "allowSyntheticDefaultImports": true,
+      "esModuleInterop": true,
       "forceConsistentCasingInFileNames": true,
       "resolveJsonModule": true,
-      "module": "esnext",
-      "lib": ["dom", "esnext"],
-      "importHelpers": true,
-      "declaration": false,
-      "sourceMap": true,
-      "strict": true,
-      "noUnusedLocals": true,
-      "noUnusedParameters": true,
-      "noImplicitReturns": true,
-      "noFallthroughCasesInSwitch": true,
-      "moduleResolution": "node",
-      "jsx": "react-jsx",
-      "esModuleInterop": true,
-      "target": "es6",
-      "noImplicitAny": true,
-      "skipLibCheck": true,
-      "outDir": "./dist",
-      "baseUrl": ".",
-      "paths": {
-        "@app/*": ["src/app/*"],
-        "@test-utils/*": ["test-utils/*"]
-      }
-    },
-    "exclude": ["**/test_common", "node_modules"],
-    "include": ["./src/*", "./src/**/*"]
-  }
-  
+      "types": ["node", "jest", "@testing-library/jest-dom"],
+  },
+  "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx",
+      "src/**/*.js",
+      "src/**/*.jsx"
+  ]
+}
