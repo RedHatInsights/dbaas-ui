@@ -1,23 +1,23 @@
 // stylelint-disable scss/at-import-no-partial-leading-underscore
 @import '~@patternfly/patternfly/sass-utilities/_all';
 
-.dbaas-home-page__header {
-  background-image: url('./large_TC_icon.png');
-  background-size: 400px;
-  background-repeat: no-repeat;
-  background-position: top right 32px;
-  background-color: black;
-  color: white;
+.dbaas-home-page {
+  &__header {
+    background-image: url('./large_TC_icon.png');
+    background-size: 400px;
+    background-repeat: no-repeat;
+    background-position: top right 32px;
+    background-color: black;
+  }
+  &__subtitle, &__header {
+    color: var(--pf-v5-global--Color--light-100);
+  }
 }
 
 @media screen and (max-width: $pf-v5-global--breakpoint--md) {
   .dbaas-home-page__header {
     background-image: none;
   }
-}
-
-.pf-v5-c-content {
-  color: white;
 }
 
 .dbaas-home-page__video-card {
