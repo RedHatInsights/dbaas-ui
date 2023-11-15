@@ -130,8 +130,8 @@ const HomePage = () => {
             </Title>
             <Stack hasGutter>
               <StackItem>
-                <TextContent>
-                  <Text className="dbaas-home-page__subtitle">&nbsp;</Text>
+                <TextContent className="dbaas-home-page__subtitle">
+                  <Text>&nbsp;</Text>
                   <Text>
                     Red Hat Trusted Content increases trust and integrity in
                     source code and accelerates the application development
