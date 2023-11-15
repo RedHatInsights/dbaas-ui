@@ -10,20 +10,21 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
-  Title,
-  Text,
-  TextContent,
-  Grid,
-  GridItem,
-  Stack,
-  StackItem,
-  Split,
-  SplitItem,
-  PageSection,
+  ButtonProps,
   Divider,
   Flex,
   FlexItem,
+  Grid,
+  GridItem,
+  PageSection,
   Popover,
+  Split,
+  SplitItem,
+  Stack,
+  StackItem,
+  Text,
+  TextContent,
+  Title,
 } from '@patternfly/react-core';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
@@ -103,7 +104,6 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(clearNotifications());
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const launchTrustedContentButton = (
@@ -114,7 +114,7 @@ const HomePage = () => {
       component="a"
       variant="primary"
       ouiaId="button-try-tc-1"
-      isLarge
+      size="lg"
     >
       Launch Trusted Content
     </Button>
@@ -122,7 +122,7 @@ const HomePage = () => {
 
   return (
     <React.Fragment>
-      <PageHeader className="dbaas-home-page__header pf-u-p-2xl">
+      <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
         <Grid>
           <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
@@ -131,9 +131,7 @@ const HomePage = () => {
             <Stack hasGutter>
               <StackItem>
                 <TextContent>
-                  <Text size="lg" className="dbaas-home-page__subtitle">
-                    &nbsp;
-                  </Text>
+                  <Text className="dbaas-home-page__subtitle">&nbsp;</Text>
                   <Text>
                     Red Hat Trusted Content increases trust and integrity in
                     source code and accelerates the application development
@@ -177,11 +175,13 @@ const HomePage = () => {
                         <Button
                           variant="secondary"
                           ouiaId="button-subscribe-tc-1"
-                          isLarge
-                          style={{
-                            color: 'white',
-                            '--pf-c-button--after--BorderColor': 'white',
-                          }}
+                          size="lg"
+                          style={
+                            {
+                              color: 'white',
+                              '--pf-v5-c-button--after--BorderColor': 'white',
+                            } as ButtonProps['style']
+                          }
                         >
                           Subscribe
                         </Button>
@@ -198,23 +198,23 @@ const HomePage = () => {
       {
         <PageSection
           variant="light"
-          className="appsrv-marketing--page-section--marketing pf-u-background-color-100"
+          className="appsrv-marketing--page-section--marketing pf-v5-u-background-color-100"
         >
           <Flex justifyContent={{ default: 'justifyContentSpaceBetween' }}>
             <Flex>
-              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: 'spacerXl' }}>&nbsp;</FlexItem>
             </Flex>
 
             <Flex flex={{ default: 'flex_1' }}>
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
-                    <div className="pf-u-text-align-center rh-secure rh-icon">
+                    <div className="pf-v5-u-text-align-center rh-secure rh-icon">
                       &nbsp;
                     </div>
                   </StackItem>
                   <StackItem>
-                    <div className="pf-u-text-align-center">
+                    <div className="pf-v5-u-text-align-center">
                       Get recommendations and <br />
                       fixes right in your IDE
                     </div>
@@ -229,12 +229,12 @@ const HomePage = () => {
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
-                    <div className="pf-u-text-align-center rh-clipboard rh-icon">
+                    <div className="pf-v5-u-text-align-center rh-clipboard rh-icon">
                       &nbsp;
                     </div>
                   </StackItem>
                   <StackItem>
-                    <div className="pf-u-text-align-center">
+                    <div className="pf-v5-u-text-align-center">
                       Find SBOMs or VEXes for your
                       <br /> Red Hat package or product
                     </div>
@@ -249,12 +249,12 @@ const HomePage = () => {
               <FlexItem className="rh-icon-flex">
                 <Stack>
                   <StackItem>
-                    <div className="pf-u-text-align-center rh-shield rh-icon">
+                    <div className="pf-v5-u-text-align-center rh-shield rh-icon">
                       &nbsp;
                     </div>
                   </StackItem>
                   <StackItem>
-                    <div className="pf-u-text-align-center">
+                    <div className="pf-v5-u-text-align-center">
                       Upload your own SBOM to learn more
                       <br /> about dependencies and vulnerabilities
                     </div>
@@ -264,7 +264,7 @@ const HomePage = () => {
             </Flex>
 
             <Flex>
-              <FlexItem spacer={{ default: 'spacerxl' }}>&nbsp;</FlexItem>
+              <FlexItem spacer={{ default: 'spacerXl' }}>&nbsp;</FlexItem>
             </Flex>
           </Flex>
         </PageSection>

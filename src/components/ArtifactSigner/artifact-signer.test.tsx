@@ -1,19 +1,10 @@
-// import React from 'react';
-// import { render } from '@testing-library/react';
-// import SampleComponent from './secure-sign';
+import React from 'react';
+import { render, screen } from '@testing-library/react';
 
 test('expect sample-component to render children', () => {
-  // const children = <h1>Hello</h1>;
-  // render(
-  //   <SampleComponent
-  //     currentStep={0}
-  //     onGetStartedClick={() => {
-  //       console.log('pressed');
-  //     }}
-  //   >
-  //     {children}
-  //   </SampleComponent>
-  // );
+  const { container } = render(<div>Sample Component</div>);
+  expect(container).toMatchSnapshot();
+  expect(screen.getByText('Sample Component')).toBeInTheDocument();
 });
 
 export {};
