@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`expect sample-component to render children 1`] = `
+<div>
+  <div>
+    Sample Component
+  </div>
+</div>
+`;

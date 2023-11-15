@@ -2,9 +2,9 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 import type {
-  PullSecret,
-  OCMErrorResponse,
   AccountsAccessToken,
+  OCMErrorResponse,
+  PullSecret,
 } from '../types';
 import { objectIsAccessToken } from '../types';
 import {
@@ -26,7 +26,6 @@ export function useAccountsAccessToken() {
   React.useEffect(() => {
     clearNotifications();
     void auth.getToken().then((t) => setBearerToken(t));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   React.useEffect(() => {

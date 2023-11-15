@@ -10,12 +10,8 @@ const ArtifactSignerComponent = lazy(
 );
 
 import './artifact-signer.scss';
-import { useDownloadPullSecret, useSteps, useDocumentation } from '../../hooks';
+import { useDocumentation, useDownloadPullSecret, useSteps } from '../../hooks';
 
-/**
- * https://reactjs.org/docs/components-and-props.html
- * https://medium.com/@thejasonfile/dumb-components-and-smart-components-e7b33a698d43
- */
 const ArtifactSignerPage = () => {
   const { appAction } = useChrome();
   const { nextStep, prevStep, step } = useSteps();
@@ -25,7 +21,6 @@ const ArtifactSignerPage = () => {
 
   useEffect(() => {
     appAction('secure-sign');
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

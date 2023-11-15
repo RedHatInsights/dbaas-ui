@@ -1,5 +1,5 @@
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
-import { useState, useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import events from '../common/analytics';
 
 export const useSteps = () => {
