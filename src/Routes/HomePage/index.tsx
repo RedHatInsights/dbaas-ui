@@ -10,14 +10,12 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
-  ButtonProps,
   Divider,
   Flex,
   FlexItem,
   Grid,
   GridItem,
   PageSection,
-  Popover,
   Split,
   SplitItem,
   Stack,
@@ -28,8 +26,6 @@ import {
 } from '@patternfly/react-core';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
-import { getTrustificationUrl } from './consts';
-import events from '../../common/analytics';
 import './home-page.scss';
 
 const HomePage = () => {
@@ -43,7 +39,8 @@ const HomePage = () => {
       dispatch(
         addNotification({
           variant: 'success',
-          title: 'We have received your request. While you are waiting, please join our Slack channel.',
+          title:
+            'We have received your request. While you are waiting, please join our Slack channel.',
           description: (
             <>
               <p>
@@ -142,7 +139,7 @@ const HomePage = () => {
                     }}
                     variant="primary"
                     ouiaId="button-try-tc-1"
-                    size='lg'
+                    size="lg"
                   >
                     Join the waiting list
                   </Button>
@@ -277,14 +274,14 @@ const HomePage = () => {
               </StackItem>
               <StackItem>
                 <Button
-                    onClick={() => {
-                      analytics.track('tc-learn-more-2-click');
-                      waitlistNotif();
-                      return false;
-                    }}
-                    variant="primary"
-                    ouiaId="button-try-tc-2"
-                    size='lg'
+                  onClick={() => {
+                    analytics.track('tc-learn-more-2-click');
+                    waitlistNotif();
+                    return false;
+                  }}
+                  variant="primary"
+                  ouiaId="button-try-tc-2"
+                  size="lg"
                 >
                   Join the waiting list
                 </Button>
