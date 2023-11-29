@@ -10,12 +10,14 @@ import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
+  ButtonProps,
   Divider,
   Flex,
   FlexItem,
   Grid,
   GridItem,
   PageSection,
+  Popover,
   Split,
   SplitItem,
   Stack,
@@ -25,6 +27,8 @@ import {
   Title,
 } from '@patternfly/react-core';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
+import { getTrustificationUrl } from './consts';
+import events from '../../common/analytics';
 import { ExternalLinkAltIcon } from '@patternfly/react-icons';
 import './home-page.scss';
 
@@ -39,15 +43,13 @@ const HomePage = () => {
       dispatch(
         addNotification({
           variant: 'success',
-          title:
-            'We have received your request. While you are waiting, please join our Slack channel.',
+          title: 'Thank you',
           description: (
             <>
               <p>
-                We are working hard to get you early access. After we approve
-                your request, we will send you an email notification with
-                information about how you can access and start using the
-                service.
+                You have been added to the waiting list. Red Hat will notify you
+                when susbcription options for the Trusted Content service become
+                available
               </p>
               <br />
               <Button
@@ -104,6 +106,20 @@ const HomePage = () => {
     dispatch(clearNotifications());
   }, []);
 
+  const launchTrustedContentButton = (
+    <Button
+      href={getTrustificationUrl()}
+      target="_blank"
+      rel="noreferrer"
+      component="a"
+      variant="primary"
+      ouiaId="button-try-tc-1"
+      size="lg"
+    >
+      Launch Trusted Content
+    </Button>
+  );
+
   return (
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
@@ -131,18 +147,47 @@ const HomePage = () => {
                     Use what we use, know what we know.
                   </Text>
                   <Text>&nbsp;</Text>
-                  <Button
-                    onClick={() => {
-                      analytics.track('tc-learn-more-1-click');
-                      waitlistNotif();
-                      return false;
-                    }}
-                    variant="primary"
-                    ouiaId="button-try-tc-1"
-                    size="lg"
-                  >
-                    Join the waiting list
-                  </Button>
+                  <Split hasGutter>
+                    <SplitItem>{launchTrustedContentButton}</SplitItem>
+                    <SplitItem>
+                      <Popover
+                        aria-label="Subcribe popover"
+                        headerContent={<div>Subscribe</div>}
+                        bodyContent={
+                          <div>
+                            you cannot subscribe to the service right now, but
+                            the service is currently free for you to use. Please
+                            sign up below if you want to get notified about it
+                          </div>
+                        }
+                        footerContent={
+                          <Button
+                            onClick={() => {
+                              analytics.track(events.TC_WAITING_LIST_CLICK);
+                              waitlistNotif();
+                              return false;
+                            }}
+                          >
+                            Add me to the waiting list
+                          </Button>
+                        }
+                      >
+                        <Button
+                          variant="secondary"
+                          ouiaId="button-subscribe-tc-1"
+                          size="lg"
+                          style={
+                            {
+                              color: 'white',
+                              '--pf-v5-c-button--after--BorderColor': 'white',
+                            } as ButtonProps['style']
+                          }
+                        >
+                          Subscribe
+                        </Button>
+                      </Popover>
+                    </SplitItem>
+                  </Split>
                 </TextContent>
               </StackItem>
             </Stack>
@@ -272,20 +317,7 @@ const HomePage = () => {
                   from OpenSource to the Enterprise.
                 </p>
               </StackItem>
-              <StackItem>
-                <Button
-                  onClick={() => {
-                    analytics.track('tc-learn-more-2-click');
-                    waitlistNotif();
-                    return false;
-                  }}
-                  variant="primary"
-                  ouiaId="button-try-tc-2"
-                  size="lg"
-                >
-                  Join the waiting list
-                </Button>
-              </StackItem>
+              <StackItem>{launchTrustedContentButton}</StackItem>
             </Stack>
           </SplitItem>
         </Split>
