@@ -6,7 +6,7 @@ import './App.scss';
 
 const App = () => {
   useEffect(() => {
-    document.title = 'Trusted Content | Red Hat OpenShift Application Services';
+    document.title = 'Trusted Profile Analyzer | Red Hat OpenShift Application Services';
   }, []);
 
   return (

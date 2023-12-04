@@ -48,7 +48,7 @@ const HomePage = () => {
             <>
               <p>
                 You have been added to the waiting list. Red Hat will notify you
-                when susbcription options for the Trusted Content service become
+                when susbcription options for the Trusted Profile Analyzer service become
                 available
               </p>
               <br />
@@ -116,7 +116,7 @@ const HomePage = () => {
       ouiaId="button-try-tc-1"
       size="lg"
     >
-      Launch Trusted Content
+      Launch Trusted Profile Analyzer
     </Button>
   );
 
@@ -126,21 +126,21 @@ const HomePage = () => {
         <Grid>
           <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
-              Get started with Red Hat Trusted Content
+              Get started with Red Hat Trusted Profile Analyzer
             </Title>
             <Stack hasGutter>
               <StackItem>
                 <TextContent className="dbaas-home-page__subtitle">
                   <Text>&nbsp;</Text>
                   <Text>
-                    Red Hat Trusted Content increases trust and integrity in
+                    Red Hat Trusted Profile Analyzer increases trust and integrity in
                     source code and accelerates the application development
                     process by providing recommendations for trusted components,
                     software composition analysis and vulnerability remediation
                     tactics directly in your IDE.
                   </Text>
                   <Text>
-                    Verify components easily by using Red Hat Trusted Content to
+                    Verify components easily by using Red Hat Trusted Profile Analyzer to
                     quickly find Software Bill of Materials (SBOMs) and
                     Vulnerability Exploitability eXchange (VEX) for Red Hat
                     products and packages or upload your own SBOM for analysis.

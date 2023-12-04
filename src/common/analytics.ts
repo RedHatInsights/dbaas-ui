@@ -4,7 +4,7 @@ const TrustedArtifactSignerEvents = {
   TAS_DOCUMENTATION_CLICKED: 'tas-ui-clicked-documentation',
 };
 
-// all analytics events for trusted content go here
+// all analytics events for trusted profile analyzer go here
 const TrustedContentEvents = {
   TC_WAITING_LIST_CLICK: 'tc-learn-more-1-click',
 };
