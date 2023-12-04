@@ -48,8 +48,8 @@ const HomePage = () => {
             <>
               <p>
                 You have been added to the waiting list. Red Hat will notify you
-                when susbcription options for the Trusted Profile Analyzer service become
-                available
+                when susbcription options for the Trusted Profile Analyzer
+                service become available
               </p>
               <br />
               <Button
@@ -133,16 +133,16 @@ const HomePage = () => {
                 <TextContent className="dbaas-home-page__subtitle">
                   <Text>&nbsp;</Text>
                   <Text>
-                    Red Hat Trusted Profile Analyzer increases trust and integrity in
-                    source code and accelerates the application development
-                    process by providing recommendations for trusted components,
-                    software composition analysis and vulnerability remediation
-                    tactics directly in your IDE.
+                    Red Hat Trusted Profile Analyzer increases trust and
+                    integrity in source code and accelerates the application
+                    development process by providing recommendations for trusted
+                    components, software composition analysis and vulnerability
+                    remediation tactics directly in your IDE.
                   </Text>
                   <Text>
-                    Verify components easily by using Red Hat Trusted Profile Analyzer to
-                    quickly find Software Bill of Materials (SBOMs) and
-                    Vulnerability Exploitability eXchange (VEX) for Red Hat
+                    Verify components easily by using Red Hat Trusted Profile
+                    Analyzer to quickly find Software Bill of Materials (SBOMs)
+                    and Vulnerability Exploitability eXchange (VEX) for Red Hat
                     products and packages or upload your own SBOM for analysis.
                     Use what we use, know what we know.
                   </Text>
