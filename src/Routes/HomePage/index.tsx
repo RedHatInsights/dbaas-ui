@@ -106,20 +106,6 @@ const HomePage = () => {
     dispatch(clearNotifications());
   }, []);
 
-  const launchTrustedContentButton = (
-    <Button
-      href={getTrustificationUrl()}
-      target="_blank"
-      rel="noreferrer"
-      component="a"
-      variant="primary"
-      ouiaId="button-try-tc-1"
-      size="lg"
-    >
-      Launch Trusted Profile Analyzer
-    </Button>
-  );
-
   return (
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
@@ -148,7 +134,20 @@ const HomePage = () => {
                   </Text>
                   <Text>&nbsp;</Text>
                   <Split hasGutter>
-                    <SplitItem>{launchTrustedContentButton}</SplitItem>
+                    <SplitItem>
+                      <Button
+                        onClick={() => {
+                          analytics.track(events.TC_LAUNCH_1_CLICK);
+                          window.open(getTrustificationUrl(), '_blank');
+                          return false;
+                        }}
+                        variant="primary"
+                        ouiaId="button-launch-tc-1"
+                        size="lg"
+                      >
+                        Launch Trusted Profile Analyzer
+                      </Button>
+                    </SplitItem>
                     <SplitItem>
                       <Popover
                         aria-label="Subcribe popover"
@@ -167,6 +166,7 @@ const HomePage = () => {
                               waitlistNotif();
                               return false;
                             }}
+                            ouiaId="button-try-tc-1"
                           >
                             Add me to the waiting list
                           </Button>
@@ -317,7 +317,20 @@ const HomePage = () => {
                   from OpenSource to the Enterprise.
                 </p>
               </StackItem>
-              <StackItem>{launchTrustedContentButton}</StackItem>
+              <StackItem>
+                <Button
+                  onClick={() => {
+                    analytics.track(events.TC_LAUNCH_2_CLICK);
+                    window.open(getTrustificationUrl(), '_blank');
+                    return false;
+                  }}
+                  variant="primary"
+                  ouiaId="button-launch-tc-2"
+                  size="lg"
+                >
+                  Launch Trusted Profile Analyzer
+                </Button>
+              </StackItem>
             </Stack>
           </SplitItem>
         </Split>
