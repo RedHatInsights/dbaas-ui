@@ -9,6 +9,10 @@ const TrustedContentEvents = {
   TC_WAITING_LIST_CLICK: 'tc-learn-more-1-click',
   TC_LAUNCH_1_CLICK: 'tc-launch-1-click',
   TC_LAUNCH_2_CLICK: 'tc-launch-2-click',
+  TC_VSCODE_PLUGIN_CLICK: 'tc-vscode-plugin-click',
+  TC_INTELLIJ_PLUGIN_CLICK: 'tc-intellij-plugin-click',
+  TC_TEKTON_PLUGIN_CLICK: 'tc-tekton-plugin-click',
+  TC_JENKINS_PLUGIN_CLICK: 'tc-tekton-jenkins-click',
 };
 
 const ANALYTICS_EVENTS = {
