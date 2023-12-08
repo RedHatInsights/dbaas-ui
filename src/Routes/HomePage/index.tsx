@@ -1,10 +1,9 @@
 /* eslint react/prop-types: 0 */
-import React, { useReducer } from 'react';
+import React from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
   Button,
-  Checkbox,
   Divider,
   Flex,
   FlexItem,
@@ -29,10 +28,6 @@ import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 
 const HomePage = () => {
   const { analytics } = useChrome();
-  const [isRhtpaSubscriptionAccepted, toggleRhtpaSubscriptionAccepted] =
-    useReducer((state) => !state, false);
-  const [isRhdaSubscriptionAccepted, toggleRhdaSubscriptionAccepted] =
-    useReducer((state) => !state, false);
 
   return (
     <React.Fragment>
@@ -59,16 +54,13 @@ const HomePage = () => {
                     <SplitItem>
                       <Popover
                         aria-label="Subcribe popover"
-                        headerContent={<div>Free subscription</div>}
+                        headerContent={
+                          <div>Red Hat Trusted Profile Analyzer</div>
+                        }
                         bodyContent={
                           <div>
-                            <Checkbox
-                              id="rhtpa-subscription-checkbox-1"
-                              name="rhtpa-subscription-checkbox-1"
-                              label="Click to accept a free subscription to Trusted Profile Analyzer."
-                              isChecked={isRhtpaSubscriptionAccepted}
-                              onChange={toggleRhtpaSubscriptionAccepted}
-                            />
+                            Service preview is available for free to console
+                            customers for a limited time.
                           </div>
                         }
                         footerContent={
@@ -81,9 +73,9 @@ const HomePage = () => {
                             variant="primary"
                             ouiaId="button-launch-tc-1"
                             size="lg"
-                            isDisabled={!isRhtpaSubscriptionAccepted}
+                            isBlock
                           >
-                            Launch Trusted Profile Analyzer
+                            Subscribe and launch
                           </Button>
                         }
                       >
@@ -110,109 +102,96 @@ const HomePage = () => {
                     <SplitItem>
                       <Popover
                         aria-label="Subcribe popover"
-                        headerContent={<div>Free subscription</div>}
+                        headerContent={<div>Red Hat Dependency Analytics</div>}
                         bodyContent={
                           <div>
-                            <Checkbox
-                              id="rhda-subscription-checkbox-1"
-                              name="rhda-subscription-checkbox-1"
-                              label="Click to accept a free subscription to Red Hat Dependency Analytics."
-                              isChecked={isRhdaSubscriptionAccepted}
-                              onChange={toggleRhdaSubscriptionAccepted}
-                            />
+                            <Table variant="compact">
+                              <Thead>
+                                <Tr>
+                                  <Th>IDE</Th>
+                                  <Th>Automation</Th>
+                                </Tr>
+                              </Thead>
+                              <Tbody>
+                                <Tr>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_VSCODE_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      VSCode
+                                    </Button>
+                                  </Td>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://hub.tekton.dev/tekton/task/redhat-dependency-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_TEKTON_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      Tekton
+                                    </Button>
+                                  </Td>
+                                </Tr>
+                                <Tr>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://plugins.jetbrains.com/plugin/12541-red-hat-dependency-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_INTELLIJ_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      IntelliJ
+                                    </Button>
+                                  </Td>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://plugins.jenkins.io/redhat-dependency-analytics/"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_JENKINS_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      Jenkins
+                                    </Button>
+                                  </Td>
+                                </Tr>
+                              </Tbody>
+                            </Table>
                           </div>
-                        }
-                        footerContent={
-                          <Table variant="compact">
-                            <Thead>
-                              <Tr>
-                                <Th>IDE</Th>
-                                <Th>Automation</Th>
-                              </Tr>
-                            </Thead>
-                            <Tbody>
-                              <Tr>
-                                <Td>
-                                  <Button
-                                    variant="link"
-                                    component="a"
-                                    href="https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics"
-                                    target="_blank"
-                                    icon={<ExternalLinkSquareAltIcon />}
-                                    iconPosition="end"
-                                    isDisabled={!isRhdaSubscriptionAccepted}
-                                    onClick={() =>
-                                      analytics.track(
-                                        events.TC_VSCODE_PLUGIN_CLICK
-                                      )
-                                    }
-                                    style={{ padding: 0 }}
-                                  >
-                                    VSCode
-                                  </Button>
-                                </Td>
-                                <Td>
-                                  <Button
-                                    variant="link"
-                                    component="a"
-                                    href="https://hub.tekton.dev/tekton/task/redhat-dependency-analytics"
-                                    target="_blank"
-                                    icon={<ExternalLinkSquareAltIcon />}
-                                    iconPosition="end"
-                                    isDisabled={!isRhdaSubscriptionAccepted}
-                                    onClick={() =>
-                                      analytics.track(
-                                        events.TC_TEKTON_PLUGIN_CLICK
-                                      )
-                                    }
-                                    style={{ padding: 0 }}
-                                  >
-                                    Tekton
-                                  </Button>
-                                </Td>
-                              </Tr>
-                              <Tr>
-                                <Td>
-                                  <Button
-                                    variant="link"
-                                    component="a"
-                                    href="https://plugins.jetbrains.com/plugin/12541-red-hat-dependency-analytics"
-                                    target="_blank"
-                                    icon={<ExternalLinkSquareAltIcon />}
-                                    iconPosition="end"
-                                    isDisabled={!isRhdaSubscriptionAccepted}
-                                    onClick={() =>
-                                      analytics.track(
-                                        events.TC_INTELLIJ_PLUGIN_CLICK
-                                      )
-                                    }
-                                    style={{ padding: 0 }}
-                                  >
-                                    IntelliJ
-                                  </Button>
-                                </Td>
-                                <Td>
-                                  <Button
-                                    variant="link"
-                                    component="a"
-                                    href="https://plugins.jenkins.io/redhat-dependency-analytics/"
-                                    target="_blank"
-                                    icon={<ExternalLinkSquareAltIcon />}
-                                    iconPosition="end"
-                                    isDisabled={!isRhdaSubscriptionAccepted}
-                                    onClick={() =>
-                                      analytics.track(
-                                        events.TC_JENKINS_PLUGIN_CLICK
-                                      )
-                                    }
-                                    style={{ padding: 0 }}
-                                  >
-                                    Jenkins
-                                  </Button>
-                                </Td>
-                              </Tr>
-                            </Tbody>
-                          </Table>
                         }
                       >
                         <Button
@@ -357,16 +336,11 @@ const HomePage = () => {
               <StackItem>
                 <Popover
                   aria-label="Subcribe popover"
-                  headerContent={<div>Free subscription</div>}
+                  headerContent={<div>Red Hat Trusted Profile Analyzer</div>}
                   bodyContent={
                     <div>
-                      <Checkbox
-                        id="rhtpa-subscription-checkbox-2"
-                        name="rhtpa-subscription-checkbox-2"
-                        label="Click to accept a free subscription to Trusted Profile Analyzer."
-                        isChecked={isRhtpaSubscriptionAccepted}
-                        onChange={toggleRhtpaSubscriptionAccepted}
-                      />
+                      Service preview is available for free to console customers
+                      for a limited time.
                     </div>
                   }
                   footerContent={
@@ -379,9 +353,9 @@ const HomePage = () => {
                       variant="primary"
                       ouiaId="button-launch-tc-2"
                       size="lg"
-                      isDisabled={!isRhtpaSubscriptionAccepted}
+                      isBlock
                     >
-                      Launch Trusted Profile Analyzer
+                      Subscribe and launch
                     </Button>
                   }
                 >
