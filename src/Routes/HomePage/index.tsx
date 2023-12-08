@@ -1,11 +1,5 @@
 /* eslint react/prop-types: 0 */
-import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import {
-  addNotification,
-  clearNotifications,
-} from '@redhat-cloud-services/frontend-components-notifications/redux';
-import { useEffect } from 'react';
+import React from 'react';
 import useChrome from '@redhat-cloud-services/frontend-components/useChrome';
 
 import {
@@ -16,6 +10,7 @@ import {
   Grid,
   GridItem,
   PageSection,
+  Popover,
   Split,
   SplitItem,
   Stack,
@@ -24,85 +19,15 @@ import {
   TextContent,
   Title,
 } from '@patternfly/react-core';
+import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { ExternalLinkAltIcon } from '@patternfly/react-icons';
+import { getTrustificationUrl } from './consts';
+import events from '../../common/analytics';
 import './home-page.scss';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
 
 const HomePage = () => {
-  const dispatch = useDispatch();
   const { analytics } = useChrome();
-  const [hasJoinedList, setHasJoinedList] = useState(false);
-
-  const waitlistNotif = () => {
-    if (!hasJoinedList) {
-      setHasJoinedList(true);
-      dispatch(
-        addNotification({
-          variant: 'success',
-          title:
-            'We have received your request. While you are waiting, please join our Slack channel.',
-          description: (
-            <>
-              <p>
-                We are working hard to get you early access. After we approve
-                your request, we will send you an email notification with
-                information about how you can access and start using the
-                service.
-              </p>
-              <br />
-              <Button
-                variant="link"
-                component="a"
-                href="https://rhdevnation.slack.com/archives/C04LXT1EU7K"
-                target="_blank"
-                rel="noopener noreferrer"
-                icon={<ExternalLinkAltIcon />}
-                iconPosition="right"
-                isInline
-              >
-                Join the #software-supply-chain-security channel on Slack
-              </Button>
-            </>
-          ),
-        })
-      );
-    } else {
-      dispatch(
-        addNotification({
-          variant: 'success',
-          title:
-            'Thank you for your interest. We are processing your previous request.',
-          description: (
-            <>
-              <p>
-                We are working hard to get you early access. After we approve
-                your request, we will send you an email notification with
-                information about how you can access and start using the
-                service.
-              </p>
-              <br />
-              <Button
-                variant="link"
-                component="a"
-                href="https://rhdevnation.slack.com/archives/C04LXT1EU7K"
-                target="_blank"
-                rel="noopener noreferrer"
-                icon={<ExternalLinkAltIcon />}
-                iconPosition="right"
-                isInline
-              >
-                Join the #software-supply-chain-security channel on Slack
-              </Button>
-            </>
-          ),
-        })
-      );
-    }
-  };
-
-  useEffect(() => {
-    dispatch(clearNotifications());
-  }, []);
 
   return (
     <React.Fragment>
@@ -110,39 +35,175 @@ const HomePage = () => {
         <Grid>
           <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
-              Get started with Red Hat Trusted Content
+              Get started with Red Hat Trusted Profile Analyzer
             </Title>
             <Stack hasGutter>
               <StackItem>
                 <TextContent className="dbaas-home-page__subtitle">
                   <Text>&nbsp;</Text>
                   <Text>
-                    Red Hat Trusted Content increases trust and integrity in
-                    source code and accelerates the application development
+                    Verify trust in components easily by using Red Hat Trusted
+                    Profile Analyzer to quickly find Software Bill of Materials
+                    (SBOMs) and Vulnerability Exploitability eXchange (VEX) for
+                    Red Hat products and packages or upload your own SBOM for
+                    analysis. Red Hat Trusted Profile Analyzer is in the
+                    beginning stages of offering Red Hat Trusted Content. Check
+                    back often for updates. Use what we use, know what we know.
+                  </Text>
+                  <Split hasGutter>
+                    <SplitItem>
+                      <Popover
+                        aria-label="Subcribe popover"
+                        headerContent={
+                          <div>Red Hat Trusted Profile Analyzer</div>
+                        }
+                        bodyContent={
+                          <div>
+                            Service preview is available for free to console
+                            customers for a limited time.
+                          </div>
+                        }
+                        footerContent={
+                          <Button
+                            onClick={() => {
+                              analytics.track(events.TC_LAUNCH_1_CLICK);
+                              window.open(getTrustificationUrl(), '_blank');
+                              return false;
+                            }}
+                            variant="primary"
+                            ouiaId="button-launch-tc-1"
+                            size="lg"
+                            isBlock
+                          >
+                            Subscribe and launch
+                          </Button>
+                        }
+                      >
+                        <Button
+                          variant="primary"
+                          ouiaId="button-get-started-tc-1"
+                          size="lg"
+                        >
+                          Get Started
+                        </Button>
+                      </Popover>
+                    </SplitItem>
+                  </Split>
+                  <Text>&nbsp;</Text>
+
+                  <Text>
+                    Red Hat Dependency Analytics increases trust and integrity
+                    in source code and accelerates the application development
                     process by providing recommendations for trusted components,
                     software composition analysis and vulnerability remediation
                     tactics directly in your IDE.
                   </Text>
-                  <Text>
-                    Verify components easily by using Red Hat Trusted Content to
-                    quickly find Software Bill of Materials (SBOMs) and
-                    Vulnerability Exploitability eXchange (VEX) for Red Hat
-                    products and packages or upload your own SBOM for analysis.
-                    Use what we use, know what we know.
-                  </Text>
-                  <Text>&nbsp;</Text>
-                  <Button
-                    onClick={() => {
-                      analytics.track('tc-learn-more-1-click');
-                      waitlistNotif();
-                      return false;
-                    }}
-                    variant="primary"
-                    ouiaId="button-try-tc-1"
-                    size="lg"
-                  >
-                    Join the waiting list
-                  </Button>
+                  <Split hasGutter>
+                    <SplitItem>
+                      <Popover
+                        aria-label="Subcribe popover"
+                        headerContent={<div>Red Hat Dependency Analytics</div>}
+                        bodyContent={
+                          <div>
+                            <Table variant="compact">
+                              <Thead>
+                                <Tr>
+                                  <Th>IDE</Th>
+                                  <Th>Automation</Th>
+                                </Tr>
+                              </Thead>
+                              <Tbody>
+                                <Tr>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://marketplace.visualstudio.com/items?itemName=redhat.fabric8-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_VSCODE_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      VSCode
+                                    </Button>
+                                  </Td>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://hub.tekton.dev/tekton/task/redhat-dependency-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_TEKTON_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      Tekton
+                                    </Button>
+                                  </Td>
+                                </Tr>
+                                <Tr>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://plugins.jetbrains.com/plugin/12541-red-hat-dependency-analytics"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_INTELLIJ_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      IntelliJ
+                                    </Button>
+                                  </Td>
+                                  <Td>
+                                    <Button
+                                      variant="link"
+                                      component="a"
+                                      href="https://plugins.jenkins.io/redhat-dependency-analytics/"
+                                      target="_blank"
+                                      icon={<ExternalLinkSquareAltIcon />}
+                                      iconPosition="end"
+                                      onClick={() =>
+                                        analytics.track(
+                                          events.TC_JENKINS_PLUGIN_CLICK
+                                        )
+                                      }
+                                      style={{ padding: 0 }}
+                                    >
+                                      Jenkins
+                                    </Button>
+                                  </Td>
+                                </Tr>
+                              </Tbody>
+                            </Table>
+                          </div>
+                        }
+                      >
+                        <Button
+                          variant="primary"
+                          ouiaId="button-launch-tc-1"
+                          size="lg"
+                        >
+                          Download
+                        </Button>
+                      </Popover>
+                    </SplitItem>
+                  </Split>
                 </TextContent>
               </StackItem>
             </Stack>
@@ -273,18 +334,39 @@ const HomePage = () => {
                 </p>
               </StackItem>
               <StackItem>
-                <Button
-                  onClick={() => {
-                    analytics.track('tc-learn-more-2-click');
-                    waitlistNotif();
-                    return false;
-                  }}
-                  variant="primary"
-                  ouiaId="button-try-tc-2"
-                  size="lg"
+                <Popover
+                  aria-label="Subcribe popover"
+                  headerContent={<div>Red Hat Trusted Profile Analyzer</div>}
+                  bodyContent={
+                    <div>
+                      Service preview is available for free to console customers
+                      for a limited time.
+                    </div>
+                  }
+                  footerContent={
+                    <Button
+                      onClick={() => {
+                        analytics.track(events.TC_LAUNCH_2_CLICK);
+                        window.open(getTrustificationUrl(), '_blank');
+                        return false;
+                      }}
+                      variant="primary"
+                      ouiaId="button-launch-tc-2"
+                      size="lg"
+                      isBlock
+                    >
+                      Subscribe and launch
+                    </Button>
+                  }
                 >
-                  Join the waiting list
-                </Button>
+                  <Button
+                    variant="primary"
+                    ouiaId="button-get-started-tc-2"
+                    size="lg"
+                  >
+                    Get Started
+                  </Button>
+                </Popover>
               </StackItem>
             </Stack>
           </SplitItem>
