@@ -81,7 +81,7 @@ const HomePage = () => {
                       >
                         <Button
                           variant="primary"
-                          ouiaId="button-get-started-tc-2"
+                          ouiaId="button-get-started-tc-1"
                           size="lg"
                         >
                           Get Started
