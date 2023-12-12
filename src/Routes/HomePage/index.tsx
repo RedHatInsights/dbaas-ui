@@ -67,7 +67,13 @@ const HomePage = () => {
                       </Button>
                     </SplitItem>
                   </Split>
-                  <Text component="small">
+                  <Text
+                    component="small"
+                    style={{
+                      marginTop: 5,
+                      color: 'var(--pf-v5-global--Color--light-100)',
+                    }}
+                  >
                     Service preview is available <u>for free</u> to console
                     customers for a limited time.
                   </Text>
@@ -318,16 +324,8 @@ const HomePage = () => {
                 </p>
               </StackItem>
               <StackItem>
-                <Popover
-                  aria-label="Subcribe popover"
-                  headerContent={<div>Red Hat Trusted Profile Analyzer</div>}
-                  bodyContent={
-                    <div>
-                      Service preview is available for free to console customers
-                      for a limited time.
-                    </div>
-                  }
-                  footerContent={
+                <Stack>
+                  <StackItem>
                     <Button
                       onClick={() => {
                         analytics.track(events.TC_LAUNCH_2_CLICK);
@@ -337,20 +335,22 @@ const HomePage = () => {
                       variant="primary"
                       ouiaId="button-launch-tc-2"
                       size="lg"
-                      isBlock
                     >
                       Subscribe and launch
                     </Button>
-                  }
-                >
-                  <Button
-                    variant="primary"
-                    ouiaId="button-get-started-tc-2"
-                    size="lg"
-                  >
-                    Get Started
-                  </Button>
-                </Popover>
+                  </StackItem>
+                  <StackItem>
+                    <Text
+                      component="small"
+                      style={{
+                        marginTop: 5,
+                      }}
+                    >
+                      Service preview is available <u>for free</u> to console
+                      customers for a limited time.
+                    </Text>
+                  </StackItem>
+                </Stack>
               </StackItem>
             </Stack>
           </SplitItem>
