@@ -81,3 +81,8 @@
 .pf-v5-l-split__item.pf-m-fill {
   flex: 1;
 }
+
+.white-button {
+  color: 'white' !important;
+  --pf-v5-c-button--after--BorderColor: 'white' !important;
+}

@@ -52,51 +52,34 @@ const HomePage = () => {
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
-                      <Popover
-                        aria-label="Subcribe popover"
-                        headerContent={
-                          <div>Red Hat Trusted Profile Analyzer</div>
-                        }
-                        bodyContent={
-                          <div>
-                            Service preview is available for free to console
-                            customers for a limited time.
-                          </div>
-                        }
-                        footerContent={
-                          <Button
-                            onClick={() => {
-                              analytics.track(events.TC_LAUNCH_1_CLICK);
-                              window.open(getTrustificationUrl(), '_blank');
-                              return false;
-                            }}
-                            variant="primary"
-                            ouiaId="button-launch-tc-1"
-                            size="lg"
-                            isBlock
-                          >
-                            Subscribe and launch
-                          </Button>
-                        }
+                      <Button
+                        onClick={() => {
+                          analytics.track(events.TC_LAUNCH_1_CLICK);
+                          window.open(getTrustificationUrl(), '_blank');
+                          return false;
+                        }}
+                        variant="primary"
+                        ouiaId="button-launch-tc-1"
+                        size="lg"
+                        isBlock
                       >
-                        <Button
-                          variant="primary"
-                          ouiaId="button-get-started-tc-1"
-                          size="lg"
-                        >
-                          Get Started
-                        </Button>
-                      </Popover>
+                        Subscribe and launch
+                      </Button>
                     </SplitItem>
                   </Split>
+                  <Text component="small">
+                    Service preview is available <u>for free</u> to console
+                    customers for a limited time.
+                  </Text>
                   <Text>&nbsp;</Text>
 
                   <Text>
-                    Red Hat Dependency Analytics increases trust and integrity
-                    in source code and accelerates the application development
-                    process by providing recommendations for trusted components,
-                    software composition analysis and vulnerability remediation
-                    tactics directly in your IDE.
+                    Red Hat Dependency Analytics is a companion tool that
+                    increases trust and integrity in source code and accelerates
+                    the application development process by providing
+                    recommendations for trusted components, software composition
+                    analysis and vulnerability remediation tactics directly in
+                    your IDE.
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
@@ -195,9 +178,10 @@ const HomePage = () => {
                         }
                       >
                         <Button
-                          variant="primary"
+                          variant="secondary"
                           ouiaId="button-launch-tc-1"
                           size="lg"
+                          className="white-button"
                         >
                           Download
                         </Button>
