@@ -70,5 +70,5 @@ export const textContent = {
 export const getTrustificationUrl = () => {
   return window.location.hostname.indexOf('stage.') === -1
     ? 'https://trust.rhcloud.com'
-    : 'https://staging.trustification.dev';
+    : 'https://trustification.stage.devshift.net';
 };
