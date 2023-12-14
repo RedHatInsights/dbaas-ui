@@ -46,9 +46,10 @@ const HomePage = () => {
                     Profile Analyzer to quickly find Software Bill of Materials
                     (SBOMs) and Vulnerability Exploitability eXchange (VEX) for
                     Red Hat products and packages or upload your own SBOM for
-                    analysis. Red Hat Trusted Profile Analyzer is in the
-                    beginning stages of offering Red Hat Trusted Content. Check
-                    back often for updates. Use what we use, know what we know.
+                    analysis. Red Hat Trusted Profile Analyzer is a Service
+                    Preview release. A Service Preview release has features and
+                    data that are in early development. Use what we use, know
+                    what we know.
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
