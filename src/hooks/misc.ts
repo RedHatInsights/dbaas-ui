@@ -15,7 +15,7 @@ export function useDocumentation() {
   const handleDocumentationClick = useCallback(() => {
     analytics.track(events.TAS_DOCUMENTATION_CLICKED);
     window.open(
-      'https://access.redhat.com/documentation/en-us/red_hat_trusted_artifact_signer/2023-q4/html-single/deployment_guide/index'
+      'https://access.redhat.com/documentation/en-us/red_hat_trusted_artifact_signer/2024-q1/html/deployment_guide/index'
     );
   }, [analytics]);
 
