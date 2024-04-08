@@ -13,6 +13,7 @@ const TrustedContentEvents = {
   TC_INTELLIJ_PLUGIN_CLICK: 'tc-intellij-plugin-click',
   TC_TEKTON_PLUGIN_CLICK: 'tc-tekton-plugin-click',
   TC_JENKINS_PLUGIN_CLICK: 'tc-tekton-jenkins-click',
+  TC_OPEN_DEPLOYMENT_GUIDE_CLICK: 'tc-open-deployment-guide-click',
 };
 
 const ANALYTICS_EVENTS = {
