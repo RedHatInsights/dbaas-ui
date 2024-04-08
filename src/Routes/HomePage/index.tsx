@@ -21,7 +21,10 @@ import {
 } from '@patternfly/react-core';
 import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { getTrustificationUrl } from './consts';
+import {
+  getTrustificationDeploymentGuide,
+  getTrustificationUrl,
+} from './consts';
 import events from '../../common/analytics';
 import './home-page.scss';
 import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
@@ -53,19 +56,44 @@ const HomePage = () => {
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
-                      <Button
-                        onClick={() => {
-                          analytics.track(events.TC_LAUNCH_1_CLICK);
-                          window.open(getTrustificationUrl(), '_blank');
-                          return false;
-                        }}
-                        variant="primary"
-                        ouiaId="button-launch-tc-1"
-                        size="lg"
-                        isBlock
-                      >
-                        Subscribe and launch
-                      </Button>
+                      <Split hasGutter>
+                        <SplitItem>
+                          <Button
+                            onClick={() => {
+                              analytics.track(events.TC_LAUNCH_1_CLICK);
+                              window.open(getTrustificationUrl(), '_blank');
+                              return false;
+                            }}
+                            variant="primary"
+                            ouiaId="button-launch-tc-1"
+                            size="lg"
+                            isBlock
+                          >
+                            Subscribe and launch
+                          </Button>
+                        </SplitItem>
+                        <SplitItem>
+                          <Button
+                            onClick={() => {
+                              analytics.track(
+                                events.TC_OPEN_DEPLOYMENT_GUIDE_CLICK
+                              );
+                              window.open(
+                                getTrustificationDeploymentGuide(),
+                                '_blank'
+                              );
+                              return false;
+                            }}
+                            variant="secondary"
+                            ouiaId="button-open-deployment-guide-tc-1"
+                            size="lg"
+                            isBlock
+                            className="white-button"
+                          >
+                            Install on Premises
+                          </Button>
+                        </SplitItem>
+                      </Split>
                     </SplitItem>
                   </Split>
                   <Text

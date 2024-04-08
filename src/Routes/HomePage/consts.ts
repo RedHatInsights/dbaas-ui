@@ -72,3 +72,7 @@ export const getTrustificationUrl = () => {
     ? 'https://trust.rhcloud.com'
     : 'https://trustification.stage.devshift.net';
 };
+
+export const getTrustificationDeploymentGuide = () => {
+  return 'https://access.redhat.com/documentation/en-us/red_hat_trusted_profile_analyzer/2024-q1/html/deployment_guide/index';
+};
