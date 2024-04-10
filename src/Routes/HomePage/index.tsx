@@ -50,7 +50,7 @@ const HomePage = () => {
                     Materials (SBOMs) and Vulnerability Exploitability eXchange
                     (VEX) documents for Red Hat products and packages. You can
                     start by clicking <b>Subscribe and launch</b>, where you can
-                    browse and search Red Hat's SBOM and VEX product
+                    browse and search Red Hat{"'"}s SBOM and VEX product
                     information, and where you can upload your own SBOMs for
                     analysis. You can also install RHTPA in a self-managed
                     environment. Click <b>Install on premises</b> to learn about
