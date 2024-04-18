@@ -21,7 +21,10 @@ import {
 } from '@patternfly/react-core';
 import ExternalLinkSquareAltIcon from '@patternfly/react-icons/dist/esm/icons/external-link-square-alt-icon';
 import { PageHeader } from '@redhat-cloud-services/frontend-components/PageHeader';
-import { getTrustificationUrl } from './consts';
+import {
+  getTrustificationDeploymentGuide,
+  getTrustificationUrl,
+} from './consts';
 import events from '../../common/analytics';
 import './home-page.scss';
 import { Table, Tbody, Td, Th, Thead, Tr } from '@patternfly/react-table';
@@ -42,30 +45,63 @@ const HomePage = () => {
                 <TextContent className="dbaas-home-page__subtitle">
                   <Text>&nbsp;</Text>
                   <Text>
-                    Verify trust in components easily by using Red Hat Trusted
-                    Profile Analyzer to quickly find Software Bill of Materials
-                    (SBOMs) and Vulnerability Exploitability eXchange (VEX) for
-                    Red Hat products and packages or upload your own SBOM for
-                    analysis. Red Hat Trusted Profile Analyzer is a Service
-                    Preview release. A Service Preview release has features and
-                    data that are in early development. Use what we use, know
-                    what we know.
+                    Easily verify software components by using Red Hat Trusted
+                    Profile Analyzer (RHTPA) to quickly find Software Bill of
+                    Materials (SBOMs) and Vulnerability Exploitability eXchange
+                    (VEX) documents for Red Hat products and packages. You can
+                    start by clicking <b>Subscribe and launch</b>, where you can
+                    browse and search Red Hat{"'"}s SBOM and VEX product
+                    information, and where you can upload your own SBOMs for
+                    analysis. You can also install RHTPA in a self-managed
+                    environment. Click <b>Install on premises</b> to learn about
+                    the requirements, and how to install RHTPA in your
+                    environment.
+                  </Text>
+                  <Text>
+                    Red Hat Trusted Profile Analyzer is a Technical Preview
+                    release. A Technical Preview release has features and that
+                    are in early development.
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
-                      <Button
-                        onClick={() => {
-                          analytics.track(events.TC_LAUNCH_1_CLICK);
-                          window.open(getTrustificationUrl(), '_blank');
-                          return false;
-                        }}
-                        variant="primary"
-                        ouiaId="button-launch-tc-1"
-                        size="lg"
-                        isBlock
-                      >
-                        Subscribe and launch
-                      </Button>
+                      <Split hasGutter>
+                        <SplitItem>
+                          <Button
+                            onClick={() => {
+                              analytics.track(events.TC_LAUNCH_1_CLICK);
+                              window.open(getTrustificationUrl(), '_blank');
+                              return false;
+                            }}
+                            variant="primary"
+                            ouiaId="button-launch-tc-1"
+                            size="lg"
+                            isBlock
+                          >
+                            Subscribe and launch
+                          </Button>
+                        </SplitItem>
+                        <SplitItem>
+                          <Button
+                            onClick={() => {
+                              analytics.track(
+                                events.TC_OPEN_DEPLOYMENT_GUIDE_CLICK
+                              );
+                              window.open(
+                                getTrustificationDeploymentGuide(),
+                                '_blank'
+                              );
+                              return false;
+                            }}
+                            variant="secondary"
+                            ouiaId="button-open-deployment-guide-tc-1"
+                            size="lg"
+                            isBlock
+                            className="white-button"
+                          >
+                            Install on premises
+                          </Button>
+                        </SplitItem>
+                      </Split>
                     </SplitItem>
                   </Split>
                   <Text
@@ -75,7 +111,7 @@ const HomePage = () => {
                       color: 'var(--pf-v5-global--Color--light-100)',
                     }}
                   >
-                    Service preview is available <u>for free</u> to console
+                    Technical Preview is available <u>for free</u> to console
                     customers for a limited time.
                   </Text>
                   <Text>&nbsp;</Text>
@@ -347,7 +383,7 @@ const HomePage = () => {
                         marginTop: 5,
                       }}
                     >
-                      Service preview is available <u>for free</u> to console
+                      Technical Preview is available <u>for free</u> to console
                       customers for a limited time.
                     </Text>
                   </StackItem>
