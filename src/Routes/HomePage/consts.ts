@@ -74,5 +74,5 @@ export const getTrustificationUrl = () => {
 };
 
 export const getTrustificationDeploymentGuide = () => {
-  return 'https://access.redhat.com/documentation/en-us/red_hat_trusted_profile_analyzer/2024-q1/html/deployment_guide/index';
+  return 'https://access.redhat.com/documentation/en-us/red_hat_trusted_profile_analyzer/1/html/deployment_guide/index';
 };
