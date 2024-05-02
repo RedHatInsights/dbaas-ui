@@ -9,6 +9,8 @@ import {
   FlexItem,
   Grid,
   GridItem,
+  List,
+  ListItem,
   PageSection,
   Popover,
   Split,
@@ -36,31 +38,51 @@ const HomePage = () => {
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
         <Grid>
-          <GridItem sm={12} md={6}>
+          <GridItem sm={12} md={9}>
             <Title size="2xl" headingLevel="h1">
-              Get started with Red Hat Trusted Profile Analyzer
+              Discover the Power of Red Hat Trusted Profile Analyzer for SBOM
+              Management – Available Now!
             </Title>
             <Stack hasGutter>
               <StackItem>
                 <TextContent className="dbaas-home-page__subtitle">
                   <Text>&nbsp;</Text>
                   <Text>
-                    Easily verify software components by using Red Hat Trusted
-                    Profile Analyzer (RHTPA) to quickly find Software Bill of
+                    Enhance your software integrity with the unique capabilities
+                    of the all-new Red Hat Trusted Profile Analyzer (RHTPA).
+                    This robust tool not only swiftly locates Software Bill of
                     Materials (SBOMs) and Vulnerability Exploitability eXchange
-                    (VEX) documents for Red Hat products and packages. You can
-                    start by clicking <b>Subscribe and launch</b>, where you can
-                    browse and search Red Hat{"'"}s SBOM and VEX product
-                    information, and where you can upload your own SBOMs for
-                    analysis. You can also install RHTPA in a self-managed
-                    environment. Click <b>Install on premises</b> to learn about
-                    the requirements, and how to install RHTPA in your
-                    environment.
+                    (VEX) documents but also provides Red Hat Dependency
+                    Analytics reports, all customized for your organization{"'"}
+                    s products and packages.
                   </Text>
+
+                  <Text component="h4">Key Benefits:</Text>
+                  <List>
+                    <ListItem>
+                      Manage and store {'"'}Software bill of materials{'"'} to
+                      accurately identify the components in use and their
+                      locations.
+                    </ListItem>
+                    <ListItem>
+                      Analyze and secure the use of open source and third-party
+                      components.
+                    </ListItem>
+                    <ListItem>
+                      Uncover all component dependencies and identify known
+                      vulnerabilities or license risks.
+                    </ListItem>
+                    <ListItem>
+                      Ensure compliance with security regulations such as the
+                      Cyber Supply Chain Act, GDPR, and PCI.
+                    </ListItem>
+                  </List>
                   <Text>
-                    Red Hat Trusted Profile Analyzer is a Technical Preview
-                    release. A Technical Preview release has features and that
-                    are in early development.
+                    Interested in RHTPA? Click <b>Install on Premise</b> to
+                    install on your cluster or <b>Subscribe</b> to dive in. With
+                    it, you can quickly explore Red Hat{"'"}s SBOM and VEX
+                    product data and even upload your own SBOMs for thorough
+                    analysis.
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
@@ -111,8 +133,8 @@ const HomePage = () => {
                       color: 'var(--pf-v5-global--Color--light-100)',
                     }}
                   >
-                    Technical Preview is available <u>for free</u> to console
-                    customers for a limited time.
+                    Red Hat Trusted Profile Analyzer is available{' '}
+                    <u>for free</u> to console customers for a limited time.
                   </Text>
                   <Text>&nbsp;</Text>
 
@@ -383,8 +405,8 @@ const HomePage = () => {
                         marginTop: 5,
                       }}
                     >
-                      Technical Preview is available <u>for free</u> to console
-                      customers for a limited time.
+                      Red Hat Trusted Profile Analyzer is available{' '}
+                      <u>for free</u> to console customers for a limited time.
                     </Text>
                   </StackItem>
                 </Stack>
