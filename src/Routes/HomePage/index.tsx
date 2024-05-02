@@ -53,14 +53,14 @@ const HomePage = () => {
                     This robust tool not only swiftly locates Software Bill of
                     Materials (SBOMs) and Vulnerability Exploitability eXchange
                     (VEX) documents but also provides Red Hat Dependency
-                    Analytics reports, all customized for your organization’s
-                    products and packages.
+                    Analytics reports, all customized for your organization{"'"}
+                    s products and packages.
                   </Text>
 
                   <Text component="h4">Key Benefits:</Text>
                   <List>
                     <ListItem>
-                      Manage and store "Software bill of materials" to
+                      Manage and store {'"'}Software bill of materials{'"'} to
                       accurately identify the components in use and their
                       locations.
                     </ListItem>
@@ -80,8 +80,9 @@ const HomePage = () => {
                   <Text>
                     Interested in RHTPA? Click <b>Install on Premise</b> to
                     install on your cluster or <b>Subscribe</b> to dive in. With
-                    it, you can quickly explore Red Hat's SBOM and VEX product
-                    data and even upload your own SBOMs for thorough analysis.
+                    it, you can quickly explore Red Hat{"'"}s SBOM and VEX
+                    product data and even upload your own SBOMs for thorough
+                    analysis.
                   </Text>
                   <Split hasGutter>
                     <SplitItem>
