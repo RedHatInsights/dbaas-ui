@@ -38,7 +38,7 @@ const HomePage = () => {
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
         <Grid>
-          <GridItem sm={12} md={7}>
+          <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
               Discover the Power of Red Hat Trusted Profile Analyzer for SBOM
               Management – Available Now!
