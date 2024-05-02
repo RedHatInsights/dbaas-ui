@@ -38,7 +38,7 @@ const HomePage = () => {
     <React.Fragment>
       <PageHeader className="dbaas-home-page__header pf-v5-u-p-2xl">
         <Grid>
-          <GridItem sm={12} md={9}>
+          <GridItem sm={12} md={6}>
             <Title size="2xl" headingLevel="h1">
               Discover the Power of Red Hat Trusted Profile Analyzer for SBOM
               Management – Available Now!
@@ -84,7 +84,7 @@ const HomePage = () => {
                     product data and even upload your own SBOMs for thorough
                     analysis.
                   </Text>
-                  <Split hasGutter>
+                  <Split hasGutter style={{ paddingTop: 17 }}>
                     <SplitItem>
                       <Split hasGutter>
                         <SplitItem>
